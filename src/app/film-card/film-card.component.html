@@ -8,6 +8,9 @@
 	<md-spinner *ngIf="loading"></md-spinner>
 
 	<div class="film-list" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch" fxLayoutWrap>
+		<md-card fxFlex="100" *ngIf="!loading && filmList.length == 0">
+			<md-card-title>Ничего не нашли :(</md-card-title>
+		</md-card>
 		<md-card class="film-card" fxFlex="49" *ngFor="let film of filmList">
 			<a [routerLink]="['/films', film.imdbID]">
 				<img *ngIf="film.Poster != 'N/A'" md-card-image src="{{film.Poster}}">
