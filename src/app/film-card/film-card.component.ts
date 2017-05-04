@@ -18,7 +18,7 @@ export class FilmCardComponent implements OnInit {
     this.getFilms();
   }
 
-  private getFilms(){
+  public getFilms(){
     if(!this.filmName) {return;}
     this.loading = true
     this.filmList.length = 0
