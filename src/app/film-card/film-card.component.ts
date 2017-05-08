@@ -22,13 +22,12 @@ export class FilmCardComponent implements OnInit {
     if(!this.filmName) {return;}
     this.loading = true
     this.filmList.length = 0
-    this.filmCardService.getFilms(this.filmName).subscribe(data => {
-      this.filmList = data;
-      this.loading = false
+    this.filmCardService.getFilms(this.filmName).subscribe(films => {
+      this.filmList = films
     }, err => {
-      this.loading = false
-      console.error("Правильно ли тут ловить ошибки?")
       console.error(err)
+    }, () => {
+      this.loading = false
     })
   }
 
