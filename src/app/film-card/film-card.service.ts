@@ -15,6 +15,9 @@ export class FilmCardService {
   getFilms (filmName: string) {
     return this.http.get(this.url + filmName)
       .map(this.extractData)
+      .catch((error: any) => {
+        return Observable.throw(error)
+      })
   }
 
 
