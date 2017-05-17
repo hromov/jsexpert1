@@ -1,8 +1,7 @@
 'use strict';
 (function() {
 
-    function Gallery (data) {    
-        console.log(data)    
+    function Gallery (filmList) {    
         this.DOMElements = {
             //saveBtn     : document.querySelector("#saveBtn"),
             refreshBtn  : document.querySelector("#refreshBtn"),
@@ -11,9 +10,9 @@
         };
 
         //this.saveDefer = $.Deferred();
-        this.items = data.Search;
+        this.films = filmList.Search;
         this.counter = 0;
-        this.totalResults = data.totalResults
+        this.totalResults = filmList.totalResults
         
         this.eventHolder = $({});
         this.updateEventName = "update";
@@ -28,9 +27,9 @@
         },
         
         buildGallery : function () {
-            console.log("Gallery is ready");
+            //console.log("Gallery is ready");
             var galleryHTML = ""
-            this.items.forEach(film => {
+            this.films.forEach(film => {
                 galleryHTML += generateCard(film);
             });
             this.DOMElements.content.innerHTML = galleryHTML;

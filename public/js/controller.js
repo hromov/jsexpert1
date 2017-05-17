@@ -12,9 +12,9 @@
     }*/
     
     function bindUpdate() {
-        gallery.eventHolder.on( gallery.updateEventName, (event, item) => {
-            model.getData(item).then(data => {
-                initGallery(data);
+        gallery.eventHolder.on( gallery.updateEventName, (onButtonClicked, request) => {
+            model.getFilms(request).then(filmList => {
+                initGallery(filmList);
             });
         });
     }
@@ -24,14 +24,13 @@
         bindUpdate();
     }
     
-    function initGallery(data){
-        console.log(data)
-        gallery = new Gallery(data);   
+    function initGallery(filmList){
+        gallery = new Gallery(filmList);   
     }
     
     function init() {
-        model.getData(request).then((data) => {
-            initGallery(data);
+        model.getFilms(request).then((filmList) => {
+            initGallery(filmList);
             bindEvents();
         });    
     }

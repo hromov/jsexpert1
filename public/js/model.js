@@ -3,21 +3,15 @@
     
     var model = function() {
 
-        function getData(request) {
+        function getFilms(request) {
             let url = "http://www.omdbapi.com/?page=1&s=" + request
-            return $.get(url, function( data ) {
-                console.log("Initial data is loaded");
-                return data;
+            return $.get(url, function( filmList ) {
+                return filmList;
             })
         }
         
-        function updateData(data) {
-            return this.getData(data)
-        }
-        
         return {
-            getData : getData,
-            updateData: updateData
+            getFilms: getFilms
         }
     }
     
