@@ -1,33 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import {FilmCardService} from './film-card.service'
+import { Component, OnInit, Input } from '@angular/core'
+import {FilmService} from '../film.service'
+
 
 @Component({
-  selector: 'app-film-card',
+  selector: 'film-card',
   templateUrl: './film-card.component.html',
   styleUrls: ['./film-card.component.css']
 })
 export class FilmCardComponent implements OnInit {
-  filmList : Object[] = []
-  filmName : string
-  loading : boolean
-  constructor(private filmCardService: FilmCardService) { }
+  @Input() filmId: string
+  Film: Object = {}
+  constructor(
+    private filmService: FilmService
+  ) { }
 
   ngOnInit() {
-    this.loading = true
-    this.filmName = "Home"
-    this.getFilms();
-  }
-
-  public getFilms(){
-    if(!this.filmName) {return;}
-    this.loading = true
-    this.filmList.length = 0
-    this.filmCardService.getFilms(this.filmName).subscribe(films => {
-      this.filmList = films
-    }, err => {
-      console.error(err)
-    }, () => {
-      this.loading = false
+    if(!this.filmId) {
+      return
+    }
+    this.filmService.getFilmById(this.filmId).subscribe(film => {
+      console.log(film)
+      this.Film = film;
     })
   }
 

@@ -1,0 +1,7 @@
+<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
+  <film-card
+    fxFlex="49"
+    *ngFor="let film of FilmList"
+    [filmId]="film.imdbID">
+  </film-card>
+</div>

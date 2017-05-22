@@ -1,9 +1,9 @@
-.film-card {
-  margin-bottom: 16px; 
+md-card {
+    height: calc(100% - 46px);
 }
-form {
-  margin-bottom: 16px;
+md-card-content > span {
+    margin-bottom: 8px;
 }
-md-spinner {
-  margin: 0 auto;
+md-card-content > span:nth-child(even) {
+    text-align: right;
 }

@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  projectName: string = 'Films App';
+  title = 'Каталог фильмов JSExpert';
   links = [
-    { path: '/', icon: 'home', label: 'Главная'},
-    { path: '/films', icon: 'videocam', label: 'Фильмы'},
+    { path: '/dashboard', icon: 'home', label: 'Главная'},
+    { path: '/filmList', icon: 'list', label: 'Все фильмы'},
+    { path: '/profile', icon: 'person', label: 'Профиль'}
   ];
+
 }

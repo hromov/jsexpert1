@@ -2,34 +2,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { routes } from './app.routes'
-
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 
 import { AppComponent } from './app.component';
+import { FilmListComponent } from './film-list/film-list.component';
 import { FilmCardComponent } from './film-card/film-card.component';
-import { FilmCardService } from './film-card/film-card.service';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import 'hammerjs';
+import { FilmService} from './film.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FilmListComponent,
     FilmCardComponent
   ],
   imports: [
-    BrowserAnimationsModule,
-    MaterialModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    FlexLayoutModule,
-    RouterModule.forRoot(routes)
+    BrowserAnimationsModule,
+    MaterialModule,
+    FlexLayoutModule
   ],
-  providers: [FilmCardService],
+  providers: [FilmService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

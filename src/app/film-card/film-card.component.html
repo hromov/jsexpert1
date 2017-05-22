@@ -1,28 +1,19 @@
-<div fxLayout="column">
-	<form>
-		<md-input-container>
-			<input [disabled]="loading" mdInput placeholder="Введите название фильма" name="filmName" [(ngModel)]="filmName" (keyup.enter)="getFilms()">
-		</md-input-container>
-	</form>
-
-	<md-spinner *ngIf="loading"></md-spinner>
-
-	<div class="film-list" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch" fxLayoutWrap>
-		<md-card fxFlex="100" *ngIf="!loading && filmList.length == 0">
-			<md-card-title>Ничего не нашли :(</md-card-title>
-		</md-card>
-		<md-card class="film-card" fxFlex="49" *ngFor="let film of filmList">
-			<a [routerLink]="['/films', film.imdbID]">
-				<img *ngIf="film.Poster != 'N/A'" md-card-image src="{{film.Poster}}">
-			</a>
-			<md-card-content>
-				<md-card-title>{{film.Title}}</md-card-title>
-				<p>Год: {{film.Year}}</p>
-				<p>Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station.</p>
-			</md-card-content>
-			<md-card-actions>
-				<button color="primary" [routerLink]="['/films', film.imdbID]" md-button>Подробнее</button>
-			</md-card-actions>	
-		</md-card>
-	</div>
-</div>
+<md-card>
+  <img md-card-image src="{{Film.Poster}}">
+	<md-card-header>
+    <md-card-title>{{Film.Title}}</md-card-title>
+	</md-card-header>
+  <md-card-content fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+		<span fxFlex="49">Релиз: {{Film.Released}}</span>
+    <span fxFlex="49">Страна: {{Film.Country}}</span>
+    <span fxFlex="49">Время: {{Film.Runtime}}</span>
+    <span fxFlex="49">Рейтинг MPAA: {{Film.Rated}}</span>
+    <span fxFlex="49">IMDB рейтинг: {{Film.imdbRating}}</span>
+    <span fxFlex="49">IMDB голосов: {{Film.imdbVotes}}</span>
+    <span fxFlex="100">Актеры: {{Film.Actors}}</span>
+		<p fxFlex="100">{{Film.Plot}}</p>
+	</md-card-content>
+	<md-card-actions>
+	  <button md-button>Подробнее</button>
+	</md-card-actions>
+</md-card>

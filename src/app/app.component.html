@@ -1,26 +1,25 @@
 <md-toolbar color="primary">
-  <span routerLink="/" routerLinkActive="routerLinkActive">{{projectName}}</span>
-  <button (click)="sidenav.toggle()" class="toolbar-button" md-mini-fab><md-icon>menu</md-icon></button>
-  <div class="toolbar-button-row">
-    <a md-button *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="routerLinkActive">
-      <md-icon>{{link.icon}}</md-icon> &nbsp; {{link.label}}
-    </a>
+  <div class="toolbar-main-row" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxHide fxShow.gt-xs class="toolbar-buttons">
+      <a md-button *ngFor="let link of links" [href]="link.path">
+        <md-icon>{{link.icon}}</md-icon> &nbsp; {{link.label}}
+      </a>
+    </div>
+    <span>{{title}}</span>
+    <button fxHide.gt-xs md-button (click)="sidenav.toggle()"><md-icon>menu</md-icon></button>
   </div>
 </md-toolbar>
+
 <md-sidenav-container>
   <md-sidenav #sidenav mode="over" class="app-sidenav">
     <nav>
-      <a md-button
-        class="nav-link"
-        *ngFor="let link of links"
-        [routerLink]="link.path"
-        routerLinkActive="active">
+      <a md-button class="nav-link" *ngFor="let link of links" [href]="link.path">
         <md-icon>{{link.icon}}</md-icon> &nbsp; {{link.label}}
       </a>
     </nav>
   </md-sidenav>
 
   <div class="app-content">
-    <router-outlet></router-outlet>
+    <film-list></film-list>
   </div>
 </md-sidenav-container>
