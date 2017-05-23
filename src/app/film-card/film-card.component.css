@@ -4,6 +4,10 @@ md-card {
 md-card-content > span {
     margin-bottom: 8px;
 }
-md-card-content > span:nth-child(even) {
+md-card-content span:nth-child(even) {
     text-align: right;
+}
+md-card-title {
+    margin-left: -8px;
+    font-weight: bold;
 }

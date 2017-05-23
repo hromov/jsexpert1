@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../film.service'
+import { Film } from '../shared/model'
 
 @Component({
   selector: 'film-list',
@@ -7,8 +8,9 @@ import { FilmService } from '../film.service'
   styleUrls: ['./film-list.component.css']
 })
 export class FilmListComponent implements OnInit {
-  FilmList : Object[] = []
+  FilmList : Array<Film> = []
   FilmName : string
+  loading : boolean
   constructor(
     private filmService: FilmService
   ) { }
@@ -22,8 +24,15 @@ export class FilmListComponent implements OnInit {
     if(!this.FilmName) {
       return
     }
+    this.loading = true
+    this.FilmList.length = 0
     this.filmService.getFilms(this.FilmName).subscribe(filmList => {
-      this.FilmList = filmList
+      this.FilmList = filmList      
+    }, err => {
+      this.loading = false
+      console.error(err)
+    }, () => {
+      this.loading = false
     })
   }
 

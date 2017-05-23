@@ -11,21 +11,15 @@ export class FilmService {
     private http: Http
   ) { }
 
-  private extractListData(res: Response) {
-    let body = res.json();
-    return body.Search || {};
-  }
-
-  private extractItemData(res: Response) {
-    let body = res.json();
-    return body || {};
-  }
-
   getFilms (filmName: string) {
-    return this.http.get(this.searchUrl + filmName + this.apiKey).map(this.extractListData);
+    return this.http.get(this.searchUrl + filmName + this.apiKey)
+      .map((r: Response) => r.json().Search || [])
+      .catch((err:Error) => { return Observable.throw(err) })
   }
 
   getFilmById (filmId: string) {
-    return this.http.get(this.filmUrl + filmId + this.apiKey).map(this.extractItemData);
+    return this.http.get(this.filmUrl + filmId + this.apiKey)
+      .map((r: Response) => r.json() || null)
+      .catch((err:Error) => { return Observable.throw(err) })
   }
 }

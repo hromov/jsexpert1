@@ -1,4 +1,4 @@
-<md-card>
+<md-card *ngIf="Film">
   <img md-card-image src="{{Film.Poster}}">
 	<md-card-header>
     <md-card-title>{{Film.Title}}</md-card-title>
@@ -14,6 +14,6 @@
 		<p fxFlex="100">{{Film.Plot}}</p>
 	</md-card-content>
 	<md-card-actions>
-	  <button md-button>Подробнее</button>
+	  <button md-button color="primary">Подробнее</button>
 	</md-card-actions>
 </md-card>
