@@ -1,0 +1,19 @@
+<md-card *ngIf="Film">
+  <img md-card-image src="{{Film.Poster}}">
+	<md-card-header>
+    <md-card-title>{{Film.Title}}</md-card-title>
+	</md-card-header>
+  <md-card-content fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+		<span fxFlex="49">Релиз: {{Film.Released}}</span>
+    <span fxFlex="49">Страна: {{Film.Country}}</span>
+    <span fxFlex="49">Время: {{Film.Runtime}}</span>
+    <span fxFlex="49">Рейтинг MPAA: {{Film.Rated}}</span>
+    <span fxFlex="49">IMDB рейтинг: {{Film.imdbRating}}</span>
+    <span fxFlex="49">IMDB голосов: {{Film.imdbVotes}}</span>
+    <span fxFlex="100">Актеры: {{Film.Actors}}</span>
+		<p fxFlex="100">{{Film.Plot}}</p>
+	</md-card-content>
+	<md-card-actions>
+	  <button md-button color="primary">Подробнее</button>
+	</md-card-actions>
+</md-card>
