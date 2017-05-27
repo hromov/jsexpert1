@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../film.service'
-import { Film } from '../shared/model'
+import { Film, Template } from '../shared/model'
 
 @Component({
   selector: 'film-list',
@@ -8,11 +8,24 @@ import { Film } from '../shared/model'
   styleUrls: ['./film-list.component.css']
 })
 export class FilmListComponent implements OnInit {
-  filmList : Array<Film> = []
+  filmList : Array<Film>
   loading : boolean
+  templates : Array<Template>
+  selectedTemplate: number
   constructor(
     private filmService: FilmService
-  ) { }
+  ) {
+    this.filmList = []
+    this.templates = [
+      {
+        Name: "Эскиз", Value: 0, Icon: "apps"
+      },
+      {
+        Name: "Список", Value: 1, Icon: "menu"
+      }
+    ]
+    this.selectedTemplate = this.templates[0].Value
+  }
 
   ngOnInit() {
     this.getFilms("Home")

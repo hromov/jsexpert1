@@ -25,6 +25,12 @@ export type Film = {
 
 }
 
+export type Template = {
+    Name: string
+    Value: number
+    Icon: string
+}
+
 type SourceValue = {
     Source: string
     Value: string
