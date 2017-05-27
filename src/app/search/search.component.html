@@ -1,0 +1,6 @@
+<md-input-container>
+  <span mdPrefix class="search-icon" (click)="search()"><md-icon>search</md-icon>&nbsp;</span>
+  <input mdInput placeholder="Введите назване фильма" value="" [(ngModel)]="filmName" (keyup.enter)="search()">
+  <span mdSuffix class="reset-icon" (click)="reset()"><md-icon>close</md-icon></span>
+</md-input-container>
+<button md-raised-button color="primary" (click)="search()">Найти</button>

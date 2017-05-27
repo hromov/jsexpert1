@@ -11,12 +11,14 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 import { FilmService} from './film.service';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmListComponent,
-    FilmCardComponent
+    FilmCardComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

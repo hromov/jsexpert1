@@ -8,26 +8,21 @@ import { Film } from '../shared/model'
   styleUrls: ['./film-list.component.css']
 })
 export class FilmListComponent implements OnInit {
-  FilmList : Array<Film> = []
-  FilmName : string
+  filmList : Array<Film> = []
   loading : boolean
   constructor(
     private filmService: FilmService
   ) { }
 
   ngOnInit() {
-    this.FilmName = "Home"
-    this.getFilms()
+    this.getFilms("Home")
   }
 
-  private getFilms() {
-    if(!this.FilmName) {
-      return
-    }
+  private getFilms(filmName: string) {
     this.loading = true
-    this.FilmList.length = 0
-    this.filmService.getFilms(this.FilmName).subscribe(filmList => {
-      this.FilmList = filmList      
+    this.filmList.length = 0
+    this.filmService.getFilms(filmName || "").subscribe(filmList => {
+      this.filmList = filmList      
     }, err => {
       this.loading = false
       console.error(err)
