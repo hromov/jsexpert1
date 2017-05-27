@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
-  <app-search (filmNameChanged)="getFilms($event)"></app-search>
-  <md-select placeholder="Внешний вид" [(ngModel)]="selectedTemplate">
+  <app-search (filmNameChanged)="getNewFilms($event)"></app-search>
+  <md-select placeholder="Выберите шаблон" [(ngModel)]="selectedTemplate">
     <md-option *ngFor="let template of templates" [value]="template.Value">
       <!--
         Не нашел адекватной поддержки md-icon в md-select
@@ -10,10 +10,8 @@
     </md-option>
   </md-select>
 </div>
-<h2 *ngIf="!loading && !filmList.length">Фильмы не найдены :(</h2>
-<md-spinner *ngIf="loading"></md-spinner>
-<div *ngIf="!loading" 
-  fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
+<h2 *ngIf="!loading && !filmList.length">Фильм не найден :(</h2>
+<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
   <film-card
     [fxFlex.gt-xs]="selectedTemplate === 0 ? 49 : 100"
     *ngFor="let film of filmList"
@@ -21,3 +19,7 @@
     [selectedTemplate]="selectedTemplate">
   </film-card>  
 </div>
+<md-spinner *ngIf="loading"></md-spinner>
+<button *ngIf="filmList.length" [disabled]="loading" md-raised-button color="primary" (click)="nextPage()">
+  Показать еще &nbsp;<md-icon>expand_more</md-icon>
+</button>

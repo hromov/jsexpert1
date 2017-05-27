@@ -35,3 +35,10 @@ type SourceValue = {
     Source: string
     Value: string
 }
+
+export type SearchFilter = {
+    Name?: string
+    Page?: number
+    ID?: string
+    ApiKey?: string
+}
