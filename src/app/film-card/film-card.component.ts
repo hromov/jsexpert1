@@ -9,10 +9,8 @@ import { Film } from '../shared/model'
   styleUrls: ['./film-card.component.css']
 })
 export class FilmCardComponent implements OnInit {
-  @Input()
-    filmId: string
-  @Input()
-    selectedTemplate: number
+  @Input() filmId: string;
+  @Input() selectedTemplate: number;
   Film: Film
   constructor(
     private filmService: FilmService

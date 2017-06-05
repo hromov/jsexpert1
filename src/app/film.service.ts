@@ -16,16 +16,16 @@ export class FilmService {
     //Не знаю почему сonst, так было в примере. Options тоже
     const searchParams = new URLSearchParams()
     searchParams.set('apikey', filter.ApiKey || this.apiKey)
-    filter.Name && searchParams.set('s', filter.Name)
-    filter.ID && searchParams.set('i', filter.ID)
-    filter.Page && searchParams.set('page', String(filter.Page))
+    searchParams.set('s', filter.Name)
+    searchParams.set('i', filter.ID)
+    searchParams.set('page', String(filter.Page))
     return searchParams
   }
 
   getFilms (filmName: string, page?: number) {
     let filter: SearchFilter = {
       Name: filmName,
-      Page: page
+      Page: page || 1
     }
     const options = new RequestOptions({ search: this.getSearchParams(filter) });
     return this.http.get(this.searchUrl, options)
