@@ -1,13 +1,27 @@
 md-card {
     height: calc(100% - 46px);
 }
-md-card-content > span {
+.two-row > span, .one-row > span {
     margin-bottom: 8px;
 }
-md-card-content span:nth-child(even) {
+.two-row > span:nth-child(even) {
     text-align: right;
 }
 md-card-title {
     margin-left: -8px;
     font-weight: bold;
+}
+md-card.list-template img {
+    margin: 0;
+    padding: 0;
+    max-height: 280px;
+    width: auto;
+    max-width: 100%;
+}
+md-card.list-template {
+    height: 280px;
+    padding: 0 24px 0 0;
+}
+.action-buttons button {
+    float: right;
 }

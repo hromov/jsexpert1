@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../film.service'
-import { Film } from '../shared/model'
+import { Film, Template } from '../shared/model'
 
 @Component({
   selector: 'film-list',
@@ -8,32 +8,55 @@ import { Film } from '../shared/model'
   styleUrls: ['./film-list.component.css']
 })
 export class FilmListComponent implements OnInit {
-  FilmList : Array<Film> = []
-  FilmName : string
+  filmList : Array<Film>
   loading : boolean
+  templates : Array<Template>
+  selectedTemplate: number
+  currentPage: number
+  currentFilm: string
   constructor(
     private filmService: FilmService
-  ) { }
-
-  ngOnInit() {
-    this.FilmName = "Home"
-    this.getFilms()
+  ) {
+    this.filmList = []
+    this.templates = [
+      {
+        Name: "Карточки", Value: 0, Icon: "apps"
+      },
+      {
+        Name: "Список", Value: 1, Icon: "menu"
+      }
+    ]
+    this.selectedTemplate = this.templates[0].Value
+    this.currentFilm = "Home"
   }
 
-  private getFilms() {
-    if(!this.FilmName) {
-      return
-    }
+  ngOnInit() {
+    this.getNewFilms(this.currentFilm)
+  }
+
+  //вызываем из шаблона при смене названия и в OnInit()
+  getNewFilms(filmName: string) {
+    this.currentFilm = filmName
+    this.currentPage = 1
+    this.filmList.length = 0
+    this.getFilms(filmName)
+  }
+
+  private getFilms(filmName: string) {
     this.loading = true
-    this.FilmList.length = 0
-    this.filmService.getFilms(this.FilmName).subscribe(filmList => {
-      this.FilmList = filmList      
+    this.filmService.getFilms(filmName || "", this.currentPage).subscribe(filmList => {
+      this.filmList = this.filmList.concat(...filmList)
     }, err => {
       this.loading = false
       console.error(err)
     }, () => {
       this.loading = false
     })
+  }
+
+  private nextPage() {
+    this.currentPage += 1
+    this.getFilms(this.currentFilm)
   }
 
 }

@@ -25,7 +25,20 @@ export type Film = {
 
 }
 
+export type Template = {
+    Name: string
+    Value: number
+    Icon: string
+}
+
 type SourceValue = {
     Source: string
     Value: string
+}
+
+export type SearchFilter = {
+    Name?: string
+    Page?: number
+    ID?: string
+    ApiKey?: string
 }

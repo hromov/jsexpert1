@@ -10,6 +10,7 @@ import { Film } from '../shared/model'
 })
 export class FilmCardComponent implements OnInit {
   @Input() filmId: string;
+  @Input() selectedTemplate: number;
   Film: Film
   constructor(
     private filmService: FilmService
