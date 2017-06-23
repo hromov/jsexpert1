@@ -1,13 +1,14 @@
 <md-card *ngIf="Film && selectedTemplate === 0">
-  <img md-card-image src="{{Film.Poster}}">
+  <img *ngIf="Film.poster_path" md-card-image src="{{midImgPath}}{{Film.poster_path}}">
+  <img *ngIf="!Film.poster_path" md-card-image src="{{noImage}}">
 	<md-card-header>
-    <md-card-title>{{Film.Title}}</md-card-title>
+    <md-card-title>{{Film.title}}</md-card-title>
 	</md-card-header>
   <md-card-content fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center" class="two-row">
-		<span fxFlex="49">Релиз: {{Film.Released}}</span>
-    <span fxFlex="49">Страна: {{Film.Country}}</span>
-    <span fxFlex="49">Время: {{Film.Runtime}}</span>
-    <span fxFlex="49">Рейтинг MPAA: {{Film.Rated}}</span>
+		<span fxFlex="49">Релиз: {{Film.released}}</span>
+    <span fxFlex="49">Страна: {{Film.country}}</span>
+    <span fxFlex="49">Время: {{Film.runtime}}</span>
+    <span fxFlex="49">Рейтинг MPAA: {{Film.rated}}</span>
     <span fxFlex="49">IMDB рейтинг: {{Film.imdbRating}}</span>
     <span fxFlex="49">IMDB голосов: {{Film.imdbVotes}}</span>
     <span fxFlex="100">Актеры: {{Film.Actors}}</span>

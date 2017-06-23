@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    /* ДОБАВИЛ СЛЕД СТРОКУ */
     Observable.fromEvent(this.searchElement.nativeElement, 'keyup')
       .map((e:any) => e.target.value)
       .debounceTime(250)
@@ -39,10 +38,12 @@ export class SearchComponent implements OnInit {
   reset() {
     this.filmName = ""
   }
-  /* ДОБАВИЛ СЛЕД ФУНКЦИЮ */
+
   updateFilmNames() {
-    this.filmService.getFilms(this.filmName || "", 1).subscribe((filmList:Array<Film>) => {
-      this.filmNames = filmList.map(film => film.Title)
+    this.filmService.getFilms(this.filmName || "", 1)
+    .map((r: any) => r.results || [])
+    .subscribe((filmList:Array<Film>) => {
+      this.filmNames = filmList.map(film => film.title)
     })
   }
 }

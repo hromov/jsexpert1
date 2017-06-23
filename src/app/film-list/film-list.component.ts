@@ -13,6 +13,7 @@ export class FilmListComponent implements OnInit {
   templates : Array<Template>
   selectedTemplate: number
   currentPage: number
+  totalPages: number
   currentFilm: string
   constructor(
     private filmService: FilmService
@@ -32,9 +33,18 @@ export class FilmListComponent implements OnInit {
 
   ngOnInit() {
     this.getNewFilms(this.currentFilm)
+    //this.getPopularFilms()
   }
+  /*
+  getPopularFilms(page?: number) {
+    this.filmService.getPopularFilms(page).subscribe(filmList => {
+      console.log(filmList)
+    })
+  }
+  */
 
   //вызываем из шаблона при смене названия и в OnInit()
+  
   getNewFilms(filmName: string) {
     this.currentFilm = filmName
     this.currentPage = 1
@@ -44,19 +54,23 @@ export class FilmListComponent implements OnInit {
 
   private getFilms(filmName: string) {
     this.loading = true
-    this.filmService.getFilms(filmName || "", this.currentPage).subscribe(filmList => {
-      this.filmList = this.filmList.concat(...filmList)
-    }, err => {
-      this.loading = false
-      console.error(err)
-    }, () => {
-      this.loading = false
-    })
+    this.filmService.getFilms(filmName || "", this.currentPage)
+      .subscribe(filmList => {
+        console.log(filmList)
+        this.totalPages = filmList.total_pages
+        this.filmList = this.filmList.concat(...filmList.results)
+        console.log(this.filmList)
+      }, err => {
+        //this.loading = false
+        console.error(err)
+      }, () => {
+        this.loading = false
+      })
   }
 
   private nextPage() {
     this.currentPage += 1
     this.getFilms(this.currentFilm)
   }
-
+  
 }
