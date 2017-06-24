@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../film.service'
 import { Film, Template } from '../shared/model'
 import { SearchService } from '../search/search.service'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'film-list',
@@ -18,7 +19,8 @@ export class FilmListComponent implements OnInit {
   currentFilm: string
   constructor(
     private filmService: FilmService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private route: ActivatedRoute
   ) {
     this.filmList = []
     /*
@@ -32,10 +34,13 @@ export class FilmListComponent implements OnInit {
     ]
     */
     //this.selectedTemplate = this.templates[0].Value
-    this.currentFilm = "Home"
     this.searchService.filmNameChanged.subscribe((filmName:string) => {
-      console.log(filmName)
+      //console.log(filmName)
       this.getNewFilms(filmName)
+    })
+    this.route.queryParams.subscribe(params => {
+      this.currentFilm = params['film_name']
+      //console.log(this.currentFilm)
     })
   }
 

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { FilmListComponent } from './film-list/film-list.component';
@@ -13,6 +14,13 @@ import 'hammerjs';
 import { FilmService} from './film.service';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
+
+const appRoutes: Routes = [
+  { path: '', component: FilmListComponent },
+  { path: 'list', component: FilmListComponent },
+  { path: 'popular', component: FilmListComponent }  
+];
+
 
 @NgModule({
   declarations: [
@@ -27,7 +35,8 @@ import { SearchService } from './search/search.service';
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [FilmService, SearchService],
   bootstrap: [AppComponent]

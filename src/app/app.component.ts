@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Каталог фильмов';
   links = [
-    { path: '/dashboard', icon: 'home', label: 'Главная'},
-    { path: '/filmList', icon: 'list', label: 'Все фильмы'},
+    { path: '/', icon: 'home', label: 'Главная'},
+    { path: '/popular', icon: 'list', label: 'Популярные'},
     { path: '/profile', icon: 'person', label: 'Профиль'}
   ];
 

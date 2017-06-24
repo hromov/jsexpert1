@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    console.log(this.filmName)
+    //console.log(this.filmName)
     this.searchService.changeFilmName(this.filmName)
   }
 
@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
   }
 
   updateFilmNames() {
-    console.log(this.filmName)
+    //console.log(this.filmName)
     this.filmService.getFilms(this.filmName || "", 1)
     .map((r: any) => r.results || [])
     .subscribe((filmList:Array<Film>) => {
