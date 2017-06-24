@@ -12,6 +12,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 import { FilmService} from './film.service';
 import { SearchComponent } from './search/search.component';
+import { SearchService } from './search/search.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { SearchComponent } from './search/search.component';
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [FilmService],
+  providers: [FilmService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

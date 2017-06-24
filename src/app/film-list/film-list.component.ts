@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../film.service'
 import { Film, Template } from '../shared/model'
+import { SearchService } from '../search/search.service'
 
 @Component({
   selector: 'film-list',
@@ -16,7 +17,8 @@ export class FilmListComponent implements OnInit {
   totalPages: number
   currentFilm: string
   constructor(
-    private filmService: FilmService
+    private filmService: FilmService,
+    private searchService: SearchService
   ) {
     this.filmList = []
     /*
@@ -31,6 +33,10 @@ export class FilmListComponent implements OnInit {
     */
     //this.selectedTemplate = this.templates[0].Value
     this.currentFilm = "Home"
+    this.searchService.filmNameChanged.subscribe((filmName:string) => {
+      console.log(filmName)
+      this.getNewFilms(filmName)
+    })
   }
 
   ngOnInit() {

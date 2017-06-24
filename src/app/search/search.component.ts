@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import { FilmService } from '../film.service';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {Observable} from 'rxjs/Observable'
+import { FilmService } from '../film.service'
+import { SearchService } from './search.service'
 import { Film } from '../shared/model'
 
 @Component({
@@ -11,17 +12,13 @@ import { Film } from '../shared/model'
 export class SearchComponent implements OnInit {
   filmName: string
   filmNames: Array<string>
-  /* ДОБАВИЛ СЛЕД СТРОКУ */
   @ViewChild('searchInput')
   searchElement;
-  @Output()
-  filmNameChanged: EventEmitter<string>;
-
   constructor(
-    /* ДОБАВИЛ СЛЕД СТРОКУ */
-    private filmService: FilmService
+    private filmService: FilmService,
+    private searchService: SearchService
   ) {
-    this.filmNameChanged = new EventEmitter<string>()
+    
   }
 
   ngOnInit() {
@@ -32,7 +29,8 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.filmNameChanged.emit(this.filmName)
+    console.log(this.filmName)
+    this.searchService.changeFilmName(this.filmName)
   }
 
   reset() {
@@ -40,6 +38,7 @@ export class SearchComponent implements OnInit {
   }
 
   updateFilmNames() {
+    console.log(this.filmName)
     this.filmService.getFilms(this.filmName || "", 1)
     .map((r: any) => r.results || [])
     .subscribe((filmList:Array<Film>) => {
