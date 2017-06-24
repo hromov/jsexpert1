@@ -13,8 +13,6 @@ export class CastComponent implements OnInit {
   film: Film
   cast: Array<People>
   crew: Array<People>
-  smallImgPath: string
-  noImage: string
   bigBackPath: string
   loading: boolean = true
   creditsLoading: boolean = true
@@ -33,9 +31,6 @@ export class CastComponent implements OnInit {
       return
     }
     this.bigBackPath = this.filmService.bigBackPath
-    this.smallImgPath = this.filmService.smallImgPath
-    this.noImage = this.filmService.noImage
-
     this.filmService.getFilmById(this.filmID).subscribe((film:Film) => {
       console.log(film)
       this.film = film

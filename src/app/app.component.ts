@@ -9,8 +9,10 @@ export class AppComponent {
   title = 'Каталог фильмов';
   links = [
     { path: '/', icon: 'home', label: 'Главная'},
-    { path: '/popular', icon: 'list', label: 'Популярные'},
+    { path: '/popular', icon: 'list', label: 'Популярные фильмы'}
+    /*,
     { path: '/profile', icon: 'person', label: 'Профиль'}
+    */
   ];
 
 }

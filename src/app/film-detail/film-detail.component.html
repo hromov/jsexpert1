@@ -10,8 +10,10 @@
   </md-card>
   <h2>В ролях</h2>
   <div class="cast" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">    
+    <!--
     <md-card *ngFor="let actor of cast; let i = index"
-      fxFlex="49" fxFlex.gt-xs="19">
+      fxFlex="49" fxFlex.gt-xs="19"
+      [routerLink]="['/peoples', actor.id]">
       <img *ngIf="actor.profile_path" md-card-image src="{{smallImgPath}}{{actor.profile_path}}">	
       <img *ngIf="!actor.profile_path" md-card-image src="{{noImage}}">
       <md-card-title>{{actor.name}}</md-card-title>
@@ -19,7 +21,13 @@
         <span>{{actor.character}}</span>
       </md-card-content>
     </md-card>
+    -->
+    <app-person-card *ngFor="let actor of cast"
+      [person]="actor"
+      [routerLink]="['/peoples', actor.id]"
+      fxFlex="49" fxFlex.gt-xs="19">
+    </app-person-card>
   </div>
-  <button md-button color="primary" routerLink="cast">Показать всех</button>
+  <button md-raised-button color="primary" routerLink="cast">Показать всех</button>
   
 </div>

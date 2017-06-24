@@ -17,12 +17,15 @@ import { SearchService } from './search/search.service';
 import { FilmPopularComponent } from './film-popular/film-popular.component';
 import { FilmDetailComponent } from './film-detail/film-detail.component';
 import { CastComponent } from './cast/cast.component';
+import { PeopleDetailComponent } from './people-detail/people-detail.component';
+import { PersonCardComponent } from './person-card/person-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: FilmPopularComponent },
   { path: 'films', component: FilmListComponent },
   { path: 'films/:id', component: FilmDetailComponent},
   { path: 'films/:id/cast', component: CastComponent},
+  { path: 'peoples/:id', component: PeopleDetailComponent},
   { path: 'popular', component: FilmPopularComponent }
 ];
 
@@ -35,7 +38,9 @@ const appRoutes: Routes = [
     SearchComponent,
     FilmPopularComponent,
     FilmDetailComponent,
-    CastComponent
+    CastComponent,
+    PeopleDetailComponent,
+    PersonCardComponent
   ],
   imports: [
     BrowserModule,

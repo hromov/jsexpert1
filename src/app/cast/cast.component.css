@@ -6,6 +6,6 @@ md-card.film {
     color: white;
     cursor: pointer;
 }
-.people md-card {
+app-person-card {
     margin-bottom: 16px;
 }

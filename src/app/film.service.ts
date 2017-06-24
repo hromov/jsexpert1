@@ -19,6 +19,7 @@ export class FilmService {
   apiKey: string = '0994e7679a856150aadcecf7de489bce'
   movieUrl: string = `${this.apiUrl}/movie`
   searchUrl: string = `${this.apiUrl}/search`
+  personUrl: string = `${this.apiUrl}/person`
   
   popularMovieUrl: string = `${this.movieUrl}/popular`
   searchMovieUrl: string = `${this.searchUrl}/movie`
@@ -78,5 +79,25 @@ export class FilmService {
     return this.http.get(this.popularMovieUrl, options)
       .map((r: Response) => r.json() || null)
       .catch((err: Error) => { return Observable.throw(err)})
+  }
+
+  getPerson(personId: string) {
+    let filter: SearchFilter = {
+      ID: personId
+    }
+    const options = new RequestOptions({ search: this.getSearchParams(filter) });
+    return this.http.get(`${this.personUrl}/${personId}`, options)
+      .map((r: Response) => r.json() || null)
+      .catch((err:Error) => { return Observable.throw(err) })
+  }
+
+  getPersonMovies(personId: string) {
+    let filter: SearchFilter = {
+      ID: personId
+    }
+    const options = new RequestOptions({ search: this.getSearchParams(filter) });
+    return this.http.get(`${this.personUrl}/${personId}/movie_credits`, options)
+      .map((r: Response) => r.json() || null)
+      .catch((err:Error) => { return Observable.throw(err) })
   }
 }

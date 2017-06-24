@@ -6,7 +6,7 @@
 .gt-xs h1 {
     margin: 0;
 }
-app-person-card {
+.films md-card {
     margin-bottom: 16px;
     cursor: pointer;
 }

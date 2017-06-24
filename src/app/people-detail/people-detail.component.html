@@ -1,0 +1,37 @@
+<div *ngIf="person" class.gt-xs="gt-xs">
+  <md-card fxLayout="column" fxLayout.gt-xs="row" fxLayoutWrap fxLayoutAlign="space-between start">
+    <div class="poster" fxFlex="32">
+      <img src="{{midImgPath}}{{person.profile_path}}">
+    </div>
+    <div fxFlex="64" fxLayout="column" fxLayoutAlign="space-between start">
+      <h1 [innerText]="person.name"></h1>
+      <p [innerText]="person.biography"></p>
+    </div>
+  </md-card>
+  <div *ngIf="cast && cast.length" class="films" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
+    <h2 fxFlex="100">Актер в фильмах</h2>
+    <md-card *ngFor="let film of cast"
+      fxFlex="49" fxFlex.gt-xs="24"
+      [routerLink]="['/films', film.id]">
+      <img *ngIf="film.poster_path" md-card-image src="{{smallImgPath}}{{film.poster_path}}">	
+      <img *ngIf="!film.poster_path" md-card-image src="{{noImage}}">
+      <md-card-title>{{film.title}}</md-card-title>
+      <md-card-content>
+        <span>{{film.character}}</span>
+      </md-card-content>
+    </md-card>
+  </div>
+  <div *ngIf="crew && crew.length" class="films" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
+    <h2 fxFlex="100">Исполнитель в фильмах</h2>
+    <md-card *ngFor="let film of crew"
+      fxFlex="49" fxFlex.gt-xs="24"
+      [routerLink]="['/films', film.id]">
+      <img *ngIf="film.poster_path" md-card-image src="{{smallImgPath}}{{film.poster_path}}">	
+      <img *ngIf="!film.poster_path" md-card-image src="{{noImage}}">
+      <md-card-title>{{film.title}}</md-card-title>
+      <md-card-content>
+        <span>{{film.job}}</span>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

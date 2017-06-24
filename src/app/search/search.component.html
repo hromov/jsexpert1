@@ -2,7 +2,7 @@
   <input #searchInput mdInput placeholder="Введите назване фильма" value="" [(ngModel)]="filmName" (keyup.enter)="search()" [mdAutocomplete]="filmNamesList">
   <span mdSuffix class="reset-icon" (click)="reset()"><md-icon>close</md-icon></span>
 </md-input-container>
-<button md-raised-button color="primary" (click)="search()">Найти &nbsp;<md-icon>search</md-icon></button>
+<button md-raised-button color="accent" (click)="search()">Найти &nbsp;<md-icon>search</md-icon></button>
 <md-autocomplete #filmNamesList="mdAutocomplete">
    <md-option *ngFor="let filmName of filmNames" [value]="filmName" (click)="search()">
       {{ filmName }}
