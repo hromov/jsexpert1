@@ -1,0 +1,36 @@
+<md-spinner *ngIf="loading"></md-spinner>
+<div *ngIf="film">
+  <md-card class="film" [ngStyle]="{'background-image': 'url('+bigBackPath+film.backdrop_path+')'}"
+    [routerLink]="['/films', film.id]">
+    <md-card-title>
+      {{film.title}}
+    </md-card-title>
+  </md-card>
+  <h2>Актеры</h2>
+  <md-spinner *ngIf="creditsLoading"></md-spinner>
+  <div class="people" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">
+    <md-card *ngFor="let actor of cast; let i = index"
+      fxFlex="32" fxFlex.gt-xs="14">
+      <img *ngIf="actor.profile_path" md-card-image src="{{smallImgPath}}{{actor.profile_path}}">	
+      <img *ngIf="!actor.profile_path" md-card-image src="{{noImage}}">
+      <md-card-title>{{actor.name}}</md-card-title>
+      <md-card-content>
+        <span>{{actor.character}}</span>
+      </md-card-content>
+    </md-card>
+  </div>
+  <h2>Создатели</h2>
+  <md-spinner *ngIf="creditsLoading"></md-spinner>
+  <div class="people" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">
+    <md-card *ngFor="let member of crew; let i = index"
+      fxFlex="32" fxFlex.gt-xs="14">
+      <img *ngIf="member.profile_path" md-card-image src="{{smallImgPath}}{{member.profile_path}}">	
+      <img *ngIf="!member.profile_path" md-card-image src="{{noImage}}">
+      <md-card-title>{{member.name}}</md-card-title>
+      <md-card-content>
+        <span>{{member.job}}</span>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
+

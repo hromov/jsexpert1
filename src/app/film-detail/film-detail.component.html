@@ -1,0 +1,25 @@
+<div *ngIf="film" class.gt-xs="gt-xs">
+  <md-card fxLayout="column" fxLayout.gt-xs="row" fxLayoutWrap fxLayoutAlign="space-between start">
+    <div class="poster" fxFlex="32">
+      <img src="{{midImgPath}}{{film.poster_path}}">
+    </div>
+    <div fxFlex="64" fxLayout="column" fxLayoutAlign="space-between start">
+      <h1 [innerText]="film.title"></h1>
+      <p [innerText]="film.overview"></p>
+    </div>
+  </md-card>
+  <h2>В ролях</h2>
+  <div class="cast" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">    
+    <md-card *ngFor="let actor of cast; let i = index"
+      fxFlex="49" fxFlex.gt-xs="19">
+      <img *ngIf="actor.profile_path" md-card-image src="{{smallImgPath}}{{actor.profile_path}}">	
+      <img *ngIf="!actor.profile_path" md-card-image src="{{noImage}}">
+      <md-card-title>{{actor.name}}</md-card-title>
+      <md-card-content>
+        <span>{{actor.character}}</span>
+      </md-card-content>
+    </md-card>
+  </div>
+  <button md-button color="primary" routerLink="cast">Показать всех</button>
+  
+</div>

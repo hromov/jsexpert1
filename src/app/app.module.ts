@@ -14,11 +14,16 @@ import 'hammerjs';
 import { FilmService} from './film.service';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
+import { FilmPopularComponent } from './film-popular/film-popular.component';
+import { FilmDetailComponent } from './film-detail/film-detail.component';
+import { CastComponent } from './cast/cast.component';
 
 const appRoutes: Routes = [
-  { path: '', component: FilmListComponent },
-  { path: 'list', component: FilmListComponent },
-  { path: 'popular', component: FilmListComponent }  
+  { path: '', component: FilmPopularComponent },
+  { path: 'films', component: FilmListComponent },
+  { path: 'films/:id', component: FilmDetailComponent},
+  { path: 'films/:id/cast', component: CastComponent},
+  { path: 'popular', component: FilmPopularComponent }
 ];
 
 
@@ -27,7 +32,10 @@ const appRoutes: Routes = [
     AppComponent,
     FilmListComponent,
     FilmCardComponent,
-    SearchComponent
+    SearchComponent,
+    FilmPopularComponent,
+    FilmDetailComponent,
+    CastComponent
   ],
   imports: [
     BrowserModule,

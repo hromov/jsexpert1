@@ -1,0 +1,11 @@
+md-card.film {
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    background-color: rgba(63,81,181,.87);
+    color: white;
+    cursor: pointer;
+}
+.people md-card {
+    margin-bottom: 16px;
+}

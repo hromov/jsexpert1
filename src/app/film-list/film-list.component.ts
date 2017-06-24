@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../film.service'
-import { Film, Template } from '../shared/model'
+import { Film } from '../shared/model'
 import { SearchService } from '../search/search.service'
 import { ActivatedRoute } from '@angular/router'
 
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router'
 export class FilmListComponent implements OnInit {
   filmList : Array<Film>
   loading : boolean
-  templates : Array<Template>
+  //templates : Array<Template>
   //selectedTemplate: number
   currentPage: number
   totalPages: number

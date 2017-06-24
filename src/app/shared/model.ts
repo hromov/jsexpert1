@@ -12,6 +12,7 @@ export type Film = {
     vote_count?: number
 }
 
+/*
 export type Template = {
     Name: string
     Value: number
@@ -22,7 +23,7 @@ type SourceValue = {
     Source: string
     Value: string
 }
-
+*/
 export type SearchFilter = {
     //Name?: string
     Page?: number
@@ -30,4 +31,19 @@ export type SearchFilter = {
     ApiKey?: string
     Language?: string
     Query?: string
+}
+
+export type People = {
+    adult?: boolean
+    biography?: string
+    birthday?: string
+    deathday?: string
+    gender?: number
+    homepage?: string
+    id?: number
+    imdb_id?: string
+    name?: string
+    place_of_birth?: string
+    popularity?: number
+    profile_path?: string
 }

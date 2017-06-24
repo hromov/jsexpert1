@@ -16,7 +16,7 @@ export class SearchService {
     }
 
     public changeFilmName(filmName:string) {
-        this.router.navigate(['/', 'list'], { queryParams: { film_name: filmName }})
+        this.router.navigate(['/films'], { queryParams: { film_name: filmName }})
         this.filmNameChanged.emit(filmName)
     }
 }
