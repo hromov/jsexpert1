@@ -11,7 +11,7 @@ export class FilmListComponent implements OnInit {
   filmList : Array<Film>
   loading : boolean
   templates : Array<Template>
-  selectedTemplate: number
+  //selectedTemplate: number
   currentPage: number
   totalPages: number
   currentFilm: string
@@ -19,6 +19,7 @@ export class FilmListComponent implements OnInit {
     private filmService: FilmService
   ) {
     this.filmList = []
+    /*
     this.templates = [
       {
         Name: "Карточки", Value: 0, Icon: "apps"
@@ -27,7 +28,8 @@ export class FilmListComponent implements OnInit {
         Name: "Список", Value: 1, Icon: "menu"
       }
     ]
-    this.selectedTemplate = this.templates[0].Value
+    */
+    //this.selectedTemplate = this.templates[0].Value
     this.currentFilm = "Home"
   }
 
@@ -61,7 +63,7 @@ export class FilmListComponent implements OnInit {
         this.filmList = this.filmList.concat(...filmList.results)
         console.log(this.filmList)
       }, err => {
-        //this.loading = false
+        this.loading = false
         console.error(err)
       }, () => {
         this.loading = false
@@ -72,5 +74,4 @@ export class FilmListComponent implements OnInit {
     this.currentPage += 1
     this.getFilms(this.currentFilm)
   }
-  
 }

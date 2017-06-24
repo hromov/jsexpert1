@@ -10,7 +10,6 @@ import { Film } from '../shared/model'
 })
 export class FilmCardComponent implements OnInit {
   @Input() filmId: string;
-  @Input() selectedTemplate: number;
   Film: Film
   imgPath: string = 'https://image.tmdb.org/t/p'
   midImgPath: string = `${this.imgPath}/w500/`
