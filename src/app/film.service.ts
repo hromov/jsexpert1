@@ -24,7 +24,7 @@ export class FilmService {
   popularMovieUrl: string = `${this.movieUrl}/popular`
   searchMovieUrl: string = `${this.searchUrl}/movie`
   
-  defaultLanguage: string = 'ru-RU'
+  defaultLanguage: string = 'en-US'
   
   constructor(
     private http: Http
