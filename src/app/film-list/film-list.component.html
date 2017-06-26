@@ -18,6 +18,6 @@
   </film-card>  
 </div>
 <md-spinner *ngIf="loading"></md-spinner>
-<button *ngIf="filmList.length" [disabled]="loading" md-raised-button color="primary" (click)="nextPage()">
+<button *ngIf="filmList.length && currentPage !== totalPages" [disabled]="loading" md-raised-button color="primary" (click)="nextPage()">
   Показать еще &nbsp;<md-icon>expand_more</md-icon>
 </button>

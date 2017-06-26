@@ -5,7 +5,11 @@ md-card.film {
     background-color: rgba(63,81,181,.87);
     color: white;
     cursor: pointer;
+    margin-bottom: 16px;
 }
 app-person-card {
     margin-bottom: 16px;
+}
+div.people {
+    margin-top: 16px;
 }

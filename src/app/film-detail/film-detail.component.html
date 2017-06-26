@@ -18,6 +18,12 @@
         </md-button-toggle>
         -->
       </div>
+      <div class="film-detail" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+        <span fxFlex="49">Релиз: {{film.release_date | date}}</span>
+        <span fxFlex="49">Время: {{film.runtime}}</span>
+        <span fxFlex="49">IMDB рейтинг: {{film.vote_average}}</span>
+        <span fxFlex="49">IMDB голосов: {{film.vote_count}}</span>
+      </div>
       <p [innerText]="film.overview"></p>
     </div>
   </md-card>
