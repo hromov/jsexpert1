@@ -100,4 +100,17 @@ export class FilmService {
       .map((r: Response) => r.json() || null)
       .catch((err:Error) => { return Observable.throw(err) })
   }
+
+  getFavoritesItem () {
+    return this.http.get("http://localhost:4200/getFavoritesList")
+      .map((r: Response) => r.json() || {})
+      .catch((err:Error) => { return Observable.throw(err) })
+  }
+
+  saveFavoriteItem () {
+    let favorite = {filmId: 123, status: true};
+    return this.http.post("http://localhost:4200/saveFavoriteItem", favorite)
+      .map((r: Response) => r.json() || {})
+      .catch((err:Error) => { return Observable.throw(err) })
+  }
 }
