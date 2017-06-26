@@ -19,6 +19,7 @@ import { FilmDetailComponent } from './film-detail/film-detail.component';
 import { CastComponent } from './cast/cast.component';
 import { PeopleDetailComponent } from './people-detail/people-detail.component';
 import { PersonCardComponent } from './person-card/person-card.component';
+import { FilmFavoritesComponent } from './film-favorites/film-favorites.component';
 
 const appRoutes: Routes = [
   { path: '', component: FilmPopularComponent },
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
   { path: 'films/:id', component: FilmDetailComponent},
   { path: 'films/:id/cast', component: CastComponent},
   { path: 'peoples/:id', component: PeopleDetailComponent},
-  { path: 'popular', component: FilmPopularComponent }
+  { path: 'popular', component: FilmPopularComponent },
+  { path: 'favorites', component: FilmFavoritesComponent }
 ];
 
 
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     FilmDetailComponent,
     CastComponent,
     PeopleDetailComponent,
-    PersonCardComponent
+    PersonCardComponent,
+    FilmFavoritesComponent
   ],
   imports: [
     BrowserModule,

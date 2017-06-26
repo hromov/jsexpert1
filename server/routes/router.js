@@ -12,6 +12,8 @@ router.post('/saveGalleryItem', galleryController.saveGalleryItem);
 router.get('/getGalleryItemByName', galleryController.getGalleryItemByName);
 
 router.get('/getFavoritesList', favoritesController.getFavoritesList);
+router.get('/getFilmItemById', favoritesController.getFilmItemById);
+//router.post('/updateFavoriteItem', favoritesController.updateFavoriteItem);
 router.post('/saveFavoriteItem', favoritesController.saveFavoriteItem);
 
 

@@ -10,6 +10,7 @@ export type Film = {
     imdb_id?: string
     vote_average?: number
     vote_count?: number
+    id?: number
 }
 
 /*
@@ -47,3 +48,10 @@ export type People = {
     popularity?: number
     profile_path?: string
 }
+/*
+export type FavoriteDBModel = {
+  filmId: string
+  status: boolean
+  _id: string
+}
+*/

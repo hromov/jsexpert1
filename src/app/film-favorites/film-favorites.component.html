@@ -1,0 +1,10 @@
+<h2 *ngIf="!loading && !films.length">Фильм не найден :(</h2>
+
+<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
+  <film-card
+    [fxFlex.gt-xs]="32"
+    *ngFor="let film of films"
+    [filmId]="film.filmId">
+  </film-card>  
+</div>
+<md-spinner *ngIf="loading"></md-spinner>

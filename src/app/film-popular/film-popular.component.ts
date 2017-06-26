@@ -18,17 +18,6 @@ export class FilmPopularComponent implements OnInit {
   ngOnInit() {
     this.currentPage = 1
     this.getPopularFilms(this.currentPage)
-    console.log("onInit")
-    this.filmService.saveFavoriteItem().subscribe(data => {
-        console.log(data);
-        console.log("saved");
-      })
-
-
-      this.filmService.getFavoritesItem().subscribe(data => {
-        console.log(data);
-        console.log("loaded");
-      })
   }
 
   getPopularFilms(page?: number) {

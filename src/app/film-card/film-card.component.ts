@@ -13,6 +13,7 @@ export class FilmCardComponent implements OnInit {
   Film: Film
   midImgPath: string
   noImage: string
+  isFavorite: boolean
   constructor(
     private filmService: FilmService
   ) { }
@@ -29,6 +30,16 @@ export class FilmCardComponent implements OnInit {
       this.Film = film
     }, err => {
       console.error(err)
+    })
+    this.filmService.getFavoriteItem(this.filmId).subscribe(favorites => {
+      //console.log(favorites)
+      favorites.forEach(favorite => {
+        //Если пришел список фильмов и хотябы один из них содержит status = true
+        if(favorite.status) {
+          this.isFavorite = true
+          return
+        }
+      })      
     })
   }
 }

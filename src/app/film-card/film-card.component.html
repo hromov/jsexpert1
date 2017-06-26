@@ -1,6 +1,7 @@
 <md-card *ngIf="Film" [routerLink]="['/films', Film.id]">
   <img *ngIf="Film.poster_path" md-card-image src="{{midImgPath}}{{Film.poster_path}}">
   <img *ngIf="!Film.poster_path" md-card-image src="{{noImage}}">
+  <md-icon class="favorite" color="primary" *ngIf="isFavorite">start</md-icon>
 	<md-card-header>
     <md-card-title>{{Film.title}}</md-card-title>
 	</md-card-header>

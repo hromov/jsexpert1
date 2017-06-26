@@ -1,3 +1,4 @@
+<md-spinner *ngIf="loading"></md-spinner>
 <div *ngIf="film" class.gt-xs="gt-xs">
   <md-card fxLayout="column" fxLayout.gt-xs="row" fxLayoutWrap fxLayoutAlign="space-between start">
     <div class="poster" fxFlex="32">
@@ -5,6 +6,18 @@
     </div>
     <div fxFlex="64" fxLayout="column" fxLayoutAlign="space-between start">
       <h1 [innerText]="film.title"></h1>
+      <div class="action-bar">
+        <button md-mini-fab (click)="saveFavorite()" [disabled]="!favoriteChecked || isFavorite" color="primary">
+          <md-icon *ngIf="isFavorite" title="Фильм в списке избранных">star</md-icon>
+          <md-icon *ngIf="!isFavorite" title="Добавить фильм в избранные">star_border</md-icon>
+        </button>
+        <!--
+        <md-button-toggle [disabled]="!favoriteChecked || isFavorite" (click)="saveFavorite()">
+          <md-icon *ngIf="isFavorite">star</md-icon>
+          <md-icon *ngIf="!isFavorite">star_border</md-icon>
+        </md-button-toggle>
+        -->
+      </div>
       <p [innerText]="film.overview"></p>
     </div>
   </md-card>

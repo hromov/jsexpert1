@@ -18,6 +18,25 @@
         });
       },
 
+      getFilmItemById: function (req, res) {
+        return FavoriteItemModel.find({ filmId: new RegExp(req.query.filmId, 'i')})
+          .exec(function (err, filteredFilmList) {
+            if (!err) {
+                return res.send(filteredFilmList);
+            } else {
+                handleError(res, err); 
+            }
+        });
+      },
+/*
+      updateFavoriteItem: function (req, res) {
+          //var item = new FavoriteItemModel(req.body);
+          return FavoriteItemModel.findByIdAndUpdate(req.query.filmId, { $set: { status: req.query.status }}, { new: true }, function (err, tank) {
+            if (err) return handleError(err);
+                res.send(tank);
+            });
+      },
+*/
       saveFavoriteItem: function(req, res) {
         var item = new FavoriteItemModel(req.body);
 
