@@ -19,27 +19,20 @@ export class FilmCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(!this.filmId) {
+    if(this.filmId) {
+      this.midImgPath = this.filmService.midImgPath
+      this.noImage = this.filmService.noImage
+      this.filmService.getFilmById(this.filmId).subscribe(film => {
+        this.Film = film
+      }, err => {
+        console.error(err)
+      })
+      this.filmService.getFavoriteItem(this.filmId).subscribe(favorites => {
+        this.isFavorite = favorites.some(favorite => favorite.status)
+      })
+    } else {
       return
     }
     
-    this.midImgPath = this.filmService.midImgPath
-    this.noImage = this.filmService.noImage
-
-    this.filmService.getFilmById(this.filmId).subscribe(film => {
-      this.Film = film
-    }, err => {
-      console.error(err)
-    })
-    this.filmService.getFavoriteItem(this.filmId).subscribe(favorites => {
-      //console.log(favorites)
-      favorites.forEach(favorite => {
-        //Если пришел список фильмов и хотябы один из них содержит status = true
-        if(favorite.status) {
-          this.isFavorite = true
-          return
-        }
-      })      
-    })
   }
 }

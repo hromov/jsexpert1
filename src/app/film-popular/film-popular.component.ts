@@ -26,7 +26,6 @@ export class FilmPopularComponent implements OnInit {
     this.filmService.getPopularFilms(page).subscribe(filmList => {
       this.totalPages = filmList.total_pages
       this.films = this.films.concat(...filmList.results)
-      console.log(this.films)
     }, err => {
       console.log(err)
       this.loading = false

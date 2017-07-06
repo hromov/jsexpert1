@@ -13,20 +13,7 @@ export type Film = {
     id?: number
 }
 
-/*
-export type Template = {
-    Name: string
-    Value: number
-    Icon: string
-}
-
-type SourceValue = {
-    Source: string
-    Value: string
-}
-*/
 export type SearchFilter = {
-    //Name?: string
     Page?: number
     ID?: string
     ApiKey?: string
@@ -50,10 +37,3 @@ export type People = {
     character?: string
     job?: string
 }
-/*
-export type FavoriteDBModel = {
-  filmId: string
-  status: boolean
-  _id: string
-}
-*/

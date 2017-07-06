@@ -9,18 +9,6 @@
   <md-tab-group>
     <md-tab *ngIf="cast" label="Актеры">
       <div class="people" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">
-          <!--
-          <md-card *ngFor="let actor of cast; let i = index"
-            fxFlex="32" fxFlex.gt-xs="14"
-            [routerLink]="['/peoples', actor.id]">
-            <img *ngIf="actor.profile_path" md-card-image src="{{smallImgPath}}{{actor.profile_path}}">	
-            <img *ngIf="!actor.profile_path" md-card-image src="{{noImage}}">
-            <md-card-title>{{actor.name}}</md-card-title>
-            <md-card-content>
-              <span>{{actor.character}}</span>
-            </md-card-content>
-          </md-card>
-          -->
       <app-person-card *ngFor="let actor of cast"
         [person]="actor"
         [routerLink]="['/peoples', actor.id]"
@@ -30,18 +18,6 @@
     </md-tab>
     <md-tab *ngIf="crew" label="Создатели">
       <div class="people" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">
-        <!--
-        <md-card *ngFor="let member of crew; let i = index"
-          fxFlex="32" fxFlex.gt-xs="14"
-          [routerLink]="['/peoples', member.id]">
-          <img *ngIf="member.profile_path" md-card-image src="{{smallImgPath}}{{member.profile_path}}">	
-          <img *ngIf="!member.profile_path" md-card-image src="{{noImage}}">
-          <md-card-title>{{member.name}}</md-card-title>
-          <md-card-content>
-            <span>{{member.job}}</span>
-          </md-card-content>
-        </md-card>
-        -->
         <app-person-card *ngFor="let member of crew"
           [person]="member"
           [routerLink]="['/peoples', member.id]"
@@ -50,7 +26,5 @@
       </div>
     </md-tab>
   </md-tab-group>
-  
-  
 </div>
 

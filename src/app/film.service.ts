@@ -119,12 +119,4 @@ export class FilmService {
       .map((r: Response) => r.json() || null)
       .catch((err:Error) => { return Observable.throw(err) })
   }
-/*
-  updateFavoriteItem (film: Film) {
-    let favorite = {filmId: film.id, status: film.status};
-    return this.http.post("http://localhost:4200/updateFavoriteItem", favorite)
-      .map((r: Response) => r.json() || null)
-      .catch((err:Error) => { return Observable.throw(err) })
-  }
-  */
 }

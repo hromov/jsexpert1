@@ -1,15 +1,4 @@
-<!--
-<div fxLayout="row" fxLayoutAlign="space-between center">
-  <app-search (filmNameChanged)="getNewFilms($event)"></app-search>
-  <md-select placeholder="Выберите шаблон" [(ngModel)]="selectedTemplate">
-    <md-option *ngFor="let template of templates" [value]="template.Value">
-      {{ template.Name }}
-    </md-option>
-  </md-select>
-</div>
--->
-<h2 *ngIf="!loading && !filmList.length">Фильм не найден :(</h2>
-
+<h2 *ngIf="filmsNotFound()">Фильмы не найден :(</h2>
 <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
   <film-card
     [fxFlex.gt-xs]="32"

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService } from '../film.service'
 import { Film, People } from '../shared/model'
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-cast',
@@ -15,7 +16,6 @@ export class CastComponent implements OnInit {
   crew: Array<People>
   bigBackPath: string
   loading: boolean = true
-  creditsLoading: boolean = true
   constructor(
     private route: ActivatedRoute,
     private filmService: FilmService
@@ -27,28 +27,25 @@ export class CastComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(!this.filmID) {
+    if(this.filmID) {
+      this.bigBackPath = this.filmService.bigBackPath
+    
+      Observable.forkJoin([
+        this.filmService.getFilmById(this.filmID),
+        this.filmService.getCredits(this.filmID)
+      ]).subscribe(([film, credits] ) => {
+        this.film = film
+        this.cast = credits.cast
+        this.crew = credits.crew
+      }, err => {
+        console.error(err)
+        this.loading = false
+      }, () => {
+        this.loading = false
+      }) 
+    } else {
       return
     }
-    this.bigBackPath = this.filmService.bigBackPath
-    this.filmService.getFilmById(this.filmID).subscribe((film:Film) => {
-      console.log(film)
-      this.film = film
-    }, err => {
-      this.loading = false
-      console.error(err)
-    }, () => {
-      this.loading = false
-    })
-    this.filmService.getCredits(this.filmID).subscribe(credits => {
-      console.log(credits)
-      this.cast = credits.cast
-      this.crew = credits.crew
-    }, err => {
-      this.creditsLoading = false
-      console.error(err)
-    }, () => {
-      this.creditsLoading = false
-    })
+    
   }
 }

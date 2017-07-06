@@ -11,12 +11,6 @@
           <md-icon *ngIf="isFavorite" title="Фильм в списке избранных">star</md-icon>
           <md-icon *ngIf="!isFavorite" title="Добавить фильм в избранные">star_border</md-icon>
         </button>
-        <!--
-        <md-button-toggle [disabled]="!favoriteChecked || isFavorite" (click)="saveFavorite()">
-          <md-icon *ngIf="isFavorite">star</md-icon>
-          <md-icon *ngIf="!isFavorite">star_border</md-icon>
-        </md-button-toggle>
-        -->
       </div>
       <div class="film-detail" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
         <span fxFlex="49">Релиз: {{film.release_date | date}}</span>
@@ -28,19 +22,7 @@
     </div>
   </md-card>
   <h2>В ролях</h2>
-  <div class="cast" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">    
-    <!--
-    <md-card *ngFor="let actor of cast; let i = index"
-      fxFlex="49" fxFlex.gt-xs="19"
-      [routerLink]="['/peoples', actor.id]">
-      <img *ngIf="actor.profile_path" md-card-image src="{{smallImgPath}}{{actor.profile_path}}">	
-      <img *ngIf="!actor.profile_path" md-card-image src="{{noImage}}">
-      <md-card-title>{{actor.name}}</md-card-title>
-      <md-card-content>
-        <span>{{actor.character}}</span>
-      </md-card-content>
-    </md-card>
-    -->
+  <div class="cast" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">
     <app-person-card *ngFor="let actor of cast"
       [person]="actor"
       [routerLink]="['/peoples', actor.id]"
