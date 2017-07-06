@@ -13,9 +13,7 @@ export class PersonCardComponent implements OnInit {
   smallImgPath: string
   noImage: string
   bigBackPath: string
-  constructor(
-    private filmService: FilmService
-  ) { }
+  constructor(private filmService: FilmService) { }
 
   ngOnInit() {
     this.smallImgPath = this.filmService.smallImgPath

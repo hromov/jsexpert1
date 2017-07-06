@@ -34,21 +34,13 @@ export class PeopleDetailComponent implements OnInit {
     this.smallImgPath = this.filmService.smallImgPath
     this.noImage = this.filmService.noImage
     this.filmService.getPerson(this.personID).subscribe((person:People) => {
-      console.log(person)
       this.person = person
     }, err => {
       console.error(err)
     })
     this.filmService.getPersonMovies(this.personID).subscribe(filmList => {
-      console.log(filmList)
       this.cast = filmList.cast
       this.crew = filmList.crew
     })
-    /*
-    this.filmService.getCredits(this.filmID).subscribe(credits => {
-      console.log(credits)
-      this.cast = credits.cast.slice(0,10)
-    })
-    */
   }
 }
