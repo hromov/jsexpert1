@@ -1,0 +1,34 @@
+<md-spinner *ngIf="loading"></md-spinner>
+<div *ngIf="film" class.gt-xs="gt-xs">
+  <md-card fxLayout="column" fxLayout.gt-xs="row" fxLayoutWrap fxLayoutAlign="space-between start">
+    <div class="poster" fxFlex="32">
+      <img src="{{midImgPath}}{{film.poster_path}}">
+    </div>
+    <div fxFlex="64" fxLayout="column" fxLayoutAlign="space-between start">
+      <h1 [innerText]="film.title"></h1>
+      <div class="action-bar">
+        <button md-mini-fab (click)="saveFavorite()" [disabled]="!favoriteChecked || isFavorite" color="primary">
+          <md-icon *ngIf="isFavorite" title="Фильм в списке избранных">star</md-icon>
+          <md-icon *ngIf="!isFavorite" title="Добавить фильм в избранные">star_border</md-icon>
+        </button>
+      </div>
+      <div class="film-detail" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+        <span fxFlex="49">Релиз: {{film.release_date | date}}</span>
+        <span fxFlex="49">Время: {{film.runtime}}</span>
+        <span fxFlex="49">IMDB рейтинг: {{film.vote_average}}</span>
+        <span fxFlex="49">IMDB голосов: {{film.vote_count}}</span>
+      </div>
+      <p [innerText]="film.overview"></p>
+    </div>
+  </md-card>
+  <h2>В ролях</h2>
+  <div class="cast" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">
+    <app-person-card *ngFor="let actor of cast"
+      [person]="actor"
+      [routerLink]="['/peoples', actor.id]"
+      fxFlex="49" fxFlex.gt-xs="19">
+    </app-person-card>
+  </div>
+  <button md-raised-button color="primary" routerLink="cast">Показать всех</button>
+  
+</div>

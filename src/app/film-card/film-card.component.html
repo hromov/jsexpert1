@@ -1,44 +1,17 @@
-<md-card *ngIf="Film && selectedTemplate === 0">
-  <img md-card-image src="{{Film.Poster}}">
+<md-card *ngIf="Film" [routerLink]="['/films', Film.id]">
+  <img *ngIf="Film.poster_path" md-card-image src="{{midImgPath}}{{Film.poster_path}}">
+  <img *ngIf="!Film.poster_path" md-card-image src="{{noImage}}">
+  <md-icon class="favorite" color="primary" *ngIf="isFavorite">start</md-icon>
 	<md-card-header>
-    <md-card-title>{{Film.Title}}</md-card-title>
+    <md-card-title>{{Film.title}}</md-card-title>
 	</md-card-header>
   <md-card-content fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center" class="two-row">
-		<span fxFlex="49">Релиз: {{Film.Released}}</span>
-    <span fxFlex="49">Страна: {{Film.Country}}</span>
-    <span fxFlex="49">Время: {{Film.Runtime}}</span>
-    <span fxFlex="49">Рейтинг MPAA: {{Film.Rated}}</span>
-    <span fxFlex="49">IMDB рейтинг: {{Film.imdbRating}}</span>
-    <span fxFlex="49">IMDB голосов: {{Film.imdbVotes}}</span>
-    <span fxFlex="100">Актеры: {{Film.Actors}}</span>
-		<p fxFlex="100">{{Film.Plot}}</p>
+		<span fxFlex="49">Релиз: {{Film.release_date | date}}</span>
+    <span fxFlex="49">Время: {{Film.runtime}}</span>
+    <span fxFlex="49">IMDB рейтинг: {{Film.vote_average}}</span>
+    <span fxFlex="49">IMDB голосов: {{Film.vote_count}}</span>
 	</md-card-content>
 	<md-card-actions>
-	  <button md-button color="primary">Подробнее</button>
+	  <button md-button color="accent">Подробнее</button>
 	</md-card-actions>
-</md-card>
-<md-card *ngIf="Film && selectedTemplate === 1" class="list-template">
-  <md-card-content fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
-    <div fxFlex="25">
-      <img src="{{Film.Poster}}">
-    </div>    
-    <div fxFlex="73" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
-      <h2 fxFlex="100">{{Film.Title}}</h2>
-      <div fxFlex="49" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center" class="one-row">
-        <span fxFlex="49">Время:</span><span fxFlex="49">{{Film.Runtime}}</span>
-        <span fxFlex="49">Релиз:</span><span fxFlex="49">{{Film.Released}}</span>
-        <span fxFlex="49">Страна:</span><span fxFlex="49">{{Film.Country}}</span>
-        <span fxFlex="49">Рейтинг MPAA:</span><span fxFlex="49">{{Film.Rated}}</span>
-        <span fxFlex="49">IMDB рейтинг:</span><span fxFlex="49">{{Film.imdbRating}}</span>
-        <span fxFlex="49">IMDB голосов:</span><span fxFlex="49">{{Film.imdbVotes}}</span>
-        <span fxFlex="100">Актеры: {{Film.Actors}}</span>
-      </div>
-      <div fxFlex="49">
-        <p>{{Film.Plot}}</p>
-      </div>
-      <div class="action-buttons" fxFlex="100">
-	      <button md-button color="primary">Подробнее</button>
-	    </div>
-    </div>
-	</md-card-content>
 </md-card>

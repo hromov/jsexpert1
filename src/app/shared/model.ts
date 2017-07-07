@@ -1,44 +1,39 @@
 export type Film = {
-    Actors?: string
-    Awards?: string
-    BoxOffice?: string
-    Country?: string
-    DVD?: string
-    Director?: string
-    Genre?: string
-    Language?: string
-    Metascore?: string
-    Plot?: string
-    Poster?: string
-    Production?: string
-    Ratings?: Array<SourceValue>
-    Released?: string
-    Response?: string
-    Runtime?: string
-    Title?: string
-    Website?: string
-    Writer?: string
-    Year?: string
-    imdbID?: string
-    imdbRating?: string
-    imdbVotes?: string
-
-}
-
-export type Template = {
-    Name: string
-    Value: number
-    Icon: string
-}
-
-type SourceValue = {
-    Source: string
-    Value: string
+    original_language?: string
+    poster_path?: string
+    release_date?: string
+    revenue?: number
+    runtime?: number
+    status?: string
+    title?: string
+    homepage?: string
+    imdb_id?: string
+    vote_average?: number
+    vote_count?: number
+    id?: number
 }
 
 export type SearchFilter = {
-    Name?: string
     Page?: number
     ID?: string
     ApiKey?: string
+    Language?: string
+    Query?: string
+}
+
+export type People = {
+    adult?: boolean
+    biography?: string
+    birthday?: string
+    deathday?: string
+    gender?: number
+    homepage?: string
+    id?: number
+    imdb_id?: string
+    name?: string
+    place_of_birth?: string
+    popularity?: number
+    profile_path?: string
+    character?: string
+    job?: string
 }

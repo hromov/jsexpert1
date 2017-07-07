@@ -7,7 +7,6 @@ md-sidenav {
   width: 200px;
 }
 .mat-sidenav-container {
-  background: #f5f5f5;
   flex: 1;
 }
 .app-content {

@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import { FilmService } from '../film.service';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {Observable} from 'rxjs/Observable'
+import { FilmService } from '../film.service'
+import { SearchService } from './search.service'
 import { Film } from '../shared/model'
 
 @Component({
@@ -11,21 +12,16 @@ import { Film } from '../shared/model'
 export class SearchComponent implements OnInit {
   filmName: string
   filmNames: Array<string>
-  /* ДОБАВИЛ СЛЕД СТРОКУ */
   @ViewChild('searchInput')
   searchElement;
-  @Output()
-  filmNameChanged: EventEmitter<string>;
-
   constructor(
-    /* ДОБАВИЛ СЛЕД СТРОКУ */
-    private filmService: FilmService
+    private filmService: FilmService,
+    private searchService: SearchService
   ) {
-    this.filmNameChanged = new EventEmitter<string>()
+    
   }
 
   ngOnInit() {
-    /* ДОБАВИЛ СЛЕД СТРОКУ */
     Observable.fromEvent(this.searchElement.nativeElement, 'keyup')
       .map((e:any) => e.target.value)
       .debounceTime(250)
@@ -33,16 +29,20 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.filmNameChanged.emit(this.filmName)
+    //console.log(this.filmName)
+    this.searchService.changeFilmName(this.filmName)
   }
 
   reset() {
     this.filmName = ""
   }
-  /* ДОБАВИЛ СЛЕД ФУНКЦИЮ */
+
   updateFilmNames() {
-    this.filmService.getFilms(this.filmName || "", 1).subscribe((filmList:Array<Film>) => {
-      this.filmNames = filmList.map(film => film.Title)
+    //console.log(this.filmName)
+    this.filmService.getFilms(this.filmName || "", 1)
+    .map((r: any) => r.results || [])
+    .subscribe((filmList:Array<Film>) => {
+      this.filmNames = filmList.map(film => film.title)
     })
   }
 }

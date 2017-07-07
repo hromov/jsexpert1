@@ -10,20 +10,29 @@ import { Film } from '../shared/model'
 })
 export class FilmCardComponent implements OnInit {
   @Input() filmId: string;
-  @Input() selectedTemplate: number;
   Film: Film
+  midImgPath: string
+  noImage: string
+  isFavorite: boolean
   constructor(
     private filmService: FilmService
   ) { }
 
   ngOnInit() {
-    if(!this.filmId) {
+    if(this.filmId) {
+      this.midImgPath = this.filmService.midImgPath
+      this.noImage = this.filmService.noImage
+      this.filmService.getFilmById(this.filmId).subscribe(film => {
+        this.Film = film
+      }, err => {
+        console.error(err)
+      })
+      this.filmService.getFavoriteItem(this.filmId).subscribe(favorites => {
+        this.isFavorite = favorites.some(favorite => favorite.status)
+      })
+    } else {
       return
     }
-    this.filmService.getFilmById(this.filmId).subscribe(film => {
-      this.Film = film
-    }, err => {
-      console.error(err)
-    })
+    
   }
 }
