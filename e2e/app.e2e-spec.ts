@@ -1,10 +1,10 @@
-import { FilmAppPage } from './app.po';
+import { PhonerPage } from './app.po';
 
-describe('film-app App', () => {
-  let page: FilmAppPage;
+describe('phoner App', () => {
+  let page: PhonerPage;
 
   beforeEach(() => {
-    page = new FilmAppPage();
+    page = new PhonerPage();
   });
 
   it('should display message saying app works', () => {
