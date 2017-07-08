@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdButtonModule, MdInputModule } from '@angular/material';
+import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MdButtonModule, MdInputModule,
+    MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

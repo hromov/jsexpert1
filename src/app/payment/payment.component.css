@@ -1,0 +1,12 @@
+form {
+    display: block;
+    margin: auto;
+    max-width: 480px;
+}
+.error {
+    color: red;
+    font-weight: bold;
+}
+span md-icon {
+    vertical-align: middle;
+}
