@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { GuardService } from '../guard.service'
+import { LoginFormModel } from '../shared/model'
 
 @Component({
   selector: 'app-login',
@@ -8,14 +9,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private guardService: GuardService) { }
 
   ngOnInit() {
   }
 
-  login(value: any) {
-    console.log(value)
-    this.router.navigate(['/payment'])
+  login(loginForm: LoginFormModel) {
+    this.guardService.login(loginForm)
   }
 
 }

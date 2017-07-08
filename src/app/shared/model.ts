@@ -9,3 +9,9 @@ export class PaymentFormModel {
         public year?: number,
     ) {}    
 }
+export class LoginFormModel {
+    constructor(
+        public email?: string,
+        public password?: string
+    ) {}
+}

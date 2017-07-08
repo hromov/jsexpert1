@@ -10,10 +10,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PaymentComponent } from './payment/payment.component';
+import { CanActivatePayment, GuardService } from './guard.service'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'payment', component: PaymentComponent },
+  { path: 'payment', component: PaymentComponent, canActivate: [CanActivatePayment] },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ]
 
@@ -32,7 +33,7 @@ const appRoutes: Routes = [
     MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [CanActivatePayment, GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
