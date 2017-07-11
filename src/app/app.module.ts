@@ -14,7 +14,7 @@ import { CanActivatePayment, GuardService } from './guard.service'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'payment', component: PaymentComponent/*, canActivate: [CanActivatePayment]*/ },
+  { path: 'payment', component: PaymentComponent, canActivate: [CanActivatePayment]},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ]
 

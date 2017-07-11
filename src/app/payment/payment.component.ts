@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { PaymentFormModel } from '../shared/model'
 import { ValidationMessages } from '../shared/messages'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
@@ -74,7 +73,6 @@ export class PaymentComponent implements OnInit {
     if (!this.paymentForm) { return; }
     const form = this.paymentForm;
     for (const field in this.formErrors) {
-      // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
  

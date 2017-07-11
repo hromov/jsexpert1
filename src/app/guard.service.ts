@@ -7,8 +7,6 @@ export class GuardService {
     private logined: boolean
     constructor(private router: Router) {}
     public isLoggedIn() {
-        //Можно ли вообще в сервисе делать такую переменную или ее можно легко изменить через консоль и т.п.?
-        //Или сервис должен всегда делать запрос на сервер и возвращать ответ напрямую? На сколько это может гарантировать защиту страницы?
         return this.logined
     }
     public login(loginForm:LoginFormModel) {
