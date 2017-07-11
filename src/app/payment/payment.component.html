@@ -6,6 +6,7 @@
     </md-card-title>
     <md-card-content fxLayout="column" fxLayout.gt-xs="row" fxLayoutWrap fxLayoutAlign="space-between center">
       <md-input-container fxFlex="69">
+        <span mdPrefix>+380 &nbsp;</span>
         <input mdInput placeholder="Номер телефона" name="phone" formControlName="phone" type="tel">
         <md-error *ngIf="formErrors.phone">
           {{formErrors.phone}}
