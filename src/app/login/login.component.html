@@ -1,16 +1,22 @@
-<form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
+<form [formGroup]="loginForm" (ngSubmit)="login()">
   <md-card>
     <md-card-title>
       Вход
     </md-card-title>
     <md-card-content>
       <md-input-container>
-        <input mdInput placeholder="Введите email" name="email" required ngModel
-          type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <input mdInput placeholder="Введите email" name="email" type="email"
+          formControlName="email">
+        <md-error *ngIf="formErrors.email">
+          {{formErrors.email}}
+        </md-error>
       </md-input-container>
       <md-input-container>
-        <input mdInput placeholder="Введите пароль" name="password" required ngModel
-          type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}">
+        <input mdInput placeholder="Введите пароль" name="password" type="password"
+          formControlName="password">
+        <md-error *ngIf="formErrors.password">
+          {{formErrors.password}}
+        </md-error>
       </md-input-container>
     </md-card-content>
     <md-card-actions>
