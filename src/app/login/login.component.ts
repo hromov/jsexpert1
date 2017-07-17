@@ -40,16 +40,17 @@ export class LoginComponent implements OnInit {
   }
 
   onValueChanged(data?: any) {
-    if (!this.loginForm) { return; }
-    const form = this.loginForm;
-    for (const field in this.formErrors) {
-      this.formErrors[field] = '';
-      const control = form.get(field);
- 
-      if (control && control.dirty && !control.valid) {
-        const messages = ValidationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
+    if(this.loginForm) {
+      const form = this.loginForm;
+      for (const field in this.formErrors) {
+        this.formErrors[field] = '';
+        const control = form.get(field);
+  
+        if (control && control.dirty && !control.valid) {
+          const messages = ValidationMessages[field];
+          for (const key in control.errors) {
+            this.formErrors[field] += messages[key] + ' ';
+          }
         }
       }
     }
