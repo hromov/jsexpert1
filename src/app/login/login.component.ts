@@ -1,21 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GuardService } from '../guard.service'
 import { LoginFormModel } from '../shared/model'
+import { Router } from '@angular/router'
+import { SSOService } from '../sso.service'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor(private guardService: GuardService) { }
-
-  ngOnInit() {
+  constructor(
+    private ssoService: SSOService,
+    private router: Router
+  ) {
+    ssoService.CurrentUserChanged$.subscribe(user => {
+      user && this.router.navigate(['/payment'])
+    })
   }
 
   login(loginForm: LoginFormModel) {
-    this.guardService.login(loginForm)
+    this.ssoService.signIn(loginForm)
   }
 
 }
