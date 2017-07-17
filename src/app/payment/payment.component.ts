@@ -70,16 +70,17 @@ export class PaymentComponent implements OnInit {
   }
 
   onValueChanged(data?: any) {
-    if (!this.paymentForm) { return; }
-    const form = this.paymentForm;
-    for (const field in this.formErrors) {
-      this.formErrors[field] = '';
-      const control = form.get(field);
- 
-      if (control && control.dirty && !control.valid) {
-        const messages = ValidationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
+    if(this.paymentForm) {
+      const form = this.paymentForm;
+      for (const field in this.formErrors) {
+        this.formErrors[field] = '';
+        const control = form.get(field);
+  
+        if (control && control.dirty && !control.valid) {
+          const messages = ValidationMessages[field];
+          for (const key in control.errors) {
+            this.formErrors[field] += messages[key] + ' ';
+          }
         }
       }
     }

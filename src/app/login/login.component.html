@@ -1,18 +1,16 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()">
   <md-card>
-    <md-card-title>
-      Вход
-    </md-card-title>
+    <md-card-title i18n="@@enter">Вход</md-card-title>
     <md-card-content>
       <md-input-container>
-        <input mdInput placeholder="Введите email" name="email" type="email"
+        <input mdInput i18n-placeholder="@@emailPlaceholder" placeholder="Введите email" name="email" type="email"
           formControlName="email">
         <md-error *ngIf="formErrors.email">
           {{formErrors.email}}
         </md-error>
       </md-input-container>
       <md-input-container>
-        <input mdInput placeholder="Введите пароль" name="password" type="password"
+        <input mdInput i18n-placeholder="@@passwordPlaceholder" placeholder="Введите пароль" name="password" type="password"
           formControlName="password">
         <md-error *ngIf="formErrors.password">
           {{formErrors.password}}
@@ -20,7 +18,7 @@
       </md-input-container>
     </md-card-content>
     <md-card-actions>
-      <button md-button type="submit" color="primary" [disabled]="loginForm.invalid">Войти</button>
+      <button md-button i18n="@@loginButton" type="submit" color="primary" [disabled]="loginForm.invalid">Войти</button>
     </md-card-actions>
   </md-card>
 </form>

@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm)
     this.guardService.login(this.loginForm.value)
   }
 

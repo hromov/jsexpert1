@@ -6,7 +6,7 @@ export const ValidationMessages = {
         },
         password: {
             required: requiredMessage,
-            pattern: 'не менее 10 символов, не менее1 числа, не менее 1 буквы в верхнем регистре'
+            pattern: 'не менее 10 символов, не менее 1 числа, не менее 1 буквы в верхнем регистре'
         },
         phone: {
             required: requiredMessage,

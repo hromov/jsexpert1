@@ -1,49 +1,49 @@
-<h1 *ngIf="done">Оплата прошла успешно</h1>
+<h1 *ngIf="done" i18n="@@paymentSuccess">Оплата прошла успешно</h1>
 <form (ngSubmit)="pay()" [formGroup]="paymentForm" *ngIf="!done">
   <md-card>
-    <md-card-title>
+    <md-card-title i18n="@@paymentFormTitle">
       Пополнениие телефона
     </md-card-title>
     <md-card-content fxLayout="column" fxLayout.gt-xs="row" fxLayoutWrap fxLayoutAlign="space-between center">
       <md-input-container fxFlex="69">
         <span mdPrefix>+380 &nbsp;</span>
-        <input mdInput placeholder="Номер телефона" name="phone" formControlName="phone" type="tel">
+        <input mdInput i18n-placeholder="@@phonePlaceholder" placeholder="Номер телефона" name="phone" formControlName="phone" type="tel">
         <md-error *ngIf="formErrors.phone">
           {{formErrors.phone}}
         </md-error>
       </md-input-container>
       <md-input-container fxFlex="29">
-        <input mdInput placeholder="Сумма" name="amount" formControlName="amount" type="number">
+        <input mdInput i18n-placeholder="@@amountPlaceholder" placeholder="Сумма" name="amount" formControlName="amount" type="number">
         <md-error *ngIf="formErrors.amount">
           {{formErrors.amount}}
         </md-error>
       </md-input-container>
       <md-input-container fxFlex="100">
-        <input mdInput placeholder="Email" name="email" formControlName="email" type="email">
+        <input mdInput i18n-placeholder="@@emailPlaceholder" placeholder="Email" name="email" formControlName="email" type="email">
         <md-error *ngIf="formErrors.email">
           {{formErrors.email}}
         </md-error>
       </md-input-container>
       <md-input-container fxFlex="69">
-        <input mdInput placeholder="Номер карты" name="card" formControlName="card" type="text"
+        <input mdInput i18n-placeholder="@@cardPlaceholder" placeholder="Номер карты" name="card" formControlName="card" type="text"
           maxlength="16">
         <md-error *ngIf="formErrors.card">
           {{formErrors.card}}
         </md-error>
       </md-input-container>
       <md-input-container fxFlex="29">
-        <input mdInput placeholder="CVV" name="cvv" formControlName="cvv" type="text" maxlength="3">
+        <input mdInput i18n-placeholder="@@cvvPlaceholder" placeholder="CVV" name="cvv" formControlName="cvv" type="text" maxlength="3">
         <md-error *ngIf="formErrors.cvv">
           {{formErrors.cvv}}
         </md-error>
       </md-input-container>
       <div class="card-date">
-        <md-select placeholder="Месяц" name="month" formControlName="month">
+        <md-select i18n-placeholder="@@monthPlaceholder" placeholder="Месяц" name="month" formControlName="month">
           <md-option *ngFor="let month of monthes" [value]="month">
             {{ month }}
           </md-option>
         </md-select>
-        <md-select placeholder="Год" name="year" formControlName="year">
+        <md-select i18n-placeholder="@@yearPlaceholder" placeholder="Год" name="year" formControlName="year">
           <md-option *ngFor="let year of years" [value]="year">
             {{ year }}
           </md-option>
@@ -51,7 +51,7 @@
       </div>
     </md-card-content>
     <md-card-actions>
-      <button md-button type="submit" color="primary" [disabled]="paymentForm.invalid">Пополнить</button>
+      <button md-button i18n="@@paymentButton" type="submit" color="primary" [disabled]="paymentForm.invalid">Пополнить</button>
     </md-card-actions>
   </md-card>
 </form>

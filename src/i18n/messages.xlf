@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="ru" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="enter" datatype="html">
+        <source>Вход</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="emailPlaceholder" datatype="html">
+        <source>Введите email</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="passwordPlaceholder" datatype="html">
+        <source>Введите пароль</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="loginButton" datatype="html">
+        <source>Войти</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentSuccess" datatype="html">
+        <source>Оплата прошла успешно</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentFormTitle" datatype="html">
+        <source>
+      Пополнениие телефона
+    </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="phonePlaceholder" datatype="html">
+        <source>Номер телефона</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="amountPlaceholder" datatype="html">
+        <source>Сумма</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cardPlaceholder" datatype="html">
+        <source>Номер карты</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cvvPlaceholder" datatype="html">
+        <source>CVV</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="monthPlaceholder" datatype="html">
+        <source>Месяц</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="yearPlaceholder" datatype="html">
+        <source>Год</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="paymentButton" datatype="html">
+        <source>Пополнить</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/payment/payment.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
