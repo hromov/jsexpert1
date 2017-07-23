@@ -7,16 +7,17 @@
       <md-input-container>
         <input mdInput placeholder="Введите email" name="email" required ngModel
           type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <md-error>{{messages?.emailError}}</md-error>
       </md-input-container>
       <md-input-container>
-        <input mdInput placeholder="Введите пароль" name="password" required ngModel
-          type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}">
+        <input #password mdInput placeholder="Введите пароль" name="password" required ngModel
+          type="password" pattern="(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}">
+        <md-error>{{messages?.passwordError}}</md-error>
       </md-input-container>
+      <md-error *ngIf="loginError">{{messages?.loginError}}</md-error>
     </md-card-content>
     <md-card-actions>
       <button md-button type="submit" color="primary" [disabled]="loginForm.invalid">Войти</button>
-      
     </md-card-actions>
   </md-card>
 </form>
-<button md-button routerLink="/payment">Payment</button>

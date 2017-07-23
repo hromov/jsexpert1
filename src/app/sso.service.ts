@@ -14,19 +14,9 @@ export class SSOService {
   public CurrentUserChanged$: Observable<User | null> = this.CurrentUserChangedSource.asObservable();
   public signIn(loginForm: LoginFormModel) {
     this.ssoApiService.signIn(loginForm)   
-      .subscribe(user => {
-        console.log(user)
+      .subscribe(user => {    
         return this.CurrentUserChangedSource.next(user)
       })
-      //Через .map не получилось
-      /*
-        .map((user: User | null) => {
-          console.log(user)
-          return this.CurrentUserChangedSource.next(user);
-        }, err => {
-          console.log(err)
-        })
-      */
   }
 
 }
