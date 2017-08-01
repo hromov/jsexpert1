@@ -1,6 +1,6 @@
-import { Component, Inject, InjectionToken } from '@angular/core';
+import { Component, Inject, InjectionToken, OnInit } from '@angular/core'
 import { GuardService } from '../guard.service'
-import { LoginFormModel } from '../shared/model'
+import { LoginFormModel } from './login.model'
 import { Router } from '@angular/router'
 import { SSOService } from '../sso.service'
 import { ErrorToken } from '../shared/errorToken'
@@ -10,9 +10,10 @@ import { ErrorToken } from '../shared/errorToken'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginError: boolean
   messages: any
+  loginForm: LoginFormModel
   constructor(
     private ssoService: SSOService,
     private router: Router,
@@ -20,7 +21,6 @@ export class LoginComponent {
   ) {
     this.messages = errorMessages
     ssoService.CurrentUserChanged$.subscribe(user => {
-      console.log(user)
       if(user) {
         this.router.navigate(['/payment'])
       } else {
@@ -29,8 +29,14 @@ export class LoginComponent {
     })
   }
 
-  login(loginForm: LoginFormModel) {
-    this.ssoService.signIn(loginForm)
+  ngOnInit() {
+    this.loginForm = new LoginFormModel()
+  }
+
+  login() {
+    if(this.loginForm.isValid()) {
+      this.ssoService.signIn(this.loginForm)
+    }
   }
 
 }

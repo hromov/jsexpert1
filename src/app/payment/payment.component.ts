@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PaymentFormModel } from '../shared/model'
+import { Component, OnInit } from '@angular/core'
+import { PaymentFormModel } from './payment.model'
 
 @Component({
   selector: 'app-payment',

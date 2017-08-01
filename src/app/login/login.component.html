@@ -1,23 +1,21 @@
-<form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
+<form (ngSubmit)="login()">
   <md-card>
-    <md-card-title>
-      Вход
-    </md-card-title>
+    <md-card-title i18n="@@loginTitle">Вход</md-card-title>
     <md-card-content>
       <md-input-container>
-        <input mdInput placeholder="Введите email" name="email" required ngModel
-          type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <input mdInput i18n-placeholder="@@emailPlaceholder" placeholder="Введите email" name="email" required
+          [(ngModel)]="loginForm.email" type="email" [pattern]=loginForm.emailRegExp>
         <md-error>{{messages?.emailError}}</md-error>
       </md-input-container>
       <md-input-container>
-        <input #password mdInput placeholder="Введите пароль" name="password" required ngModel
-          type="password" pattern="(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}">
+        <input mdInput i18n-placeholder="@@passwordPlaceholder"  placeholder="Введите пароль" name="password" required
+          [(ngModel)]="loginForm.password" type="password" [pattern]=loginForm.passwordRegExp>
         <md-error>{{messages?.passwordError}}</md-error>
       </md-input-container>
       <md-error *ngIf="loginError">{{messages?.loginError}}</md-error>
     </md-card-content>
     <md-card-actions>
-      <button md-button type="submit" color="primary" [disabled]="loginForm.invalid">Войти</button>
+      <button md-button type="submit" color="primary" [disabled]="!loginForm.isValid()" i18n="@@loginButton">Войти</button>
     </md-card-actions>
   </md-card>
 </form>
