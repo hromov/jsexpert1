@@ -1,0 +1,22 @@
+<form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
+  <md-card>
+    <md-card-title>
+      Вход
+    </md-card-title>
+    <md-card-content>
+      <md-input-container>
+        <input mdInput placeholder="Введите email" name="email" required ngModel
+          type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Введите пароль" name="password" required ngModel
+          type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}">
+      </md-input-container>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button type="submit" color="primary" [disabled]="loginForm.invalid">Войти</button>
+      
+    </md-card-actions>
+  </md-card>
+</form>
+<button md-button routerLink="/payment">Payment</button>

@@ -1,8 +1,0 @@
-<md-card>
-  <img *ngIf="person.profile_path" md-card-image src="{{smallImgPath}}{{person.profile_path}}">	
-  <img *ngIf="!person.profile_path" md-card-image src="{{noImage}}">
-  <md-card-title>{{person.name}}</md-card-title>
-  <md-card-content>
-    <span>{{person.character || person.job}}</span>
-  </md-card-content>
-</md-card>

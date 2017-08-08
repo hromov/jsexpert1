@@ -1,39 +1,23 @@
-export type Film = {
-    original_language?: string
-    poster_path?: string
-    release_date?: string
-    revenue?: number
-    runtime?: number
-    status?: string
-    title?: string
-    homepage?: string
-    imdb_id?: string
-    vote_average?: number
-    vote_count?: number
-    id?: number
+export class PaymentFormModel {
+    constructor(
+        public phone?: string,
+        public amount?: number,
+        public email?: string,
+        public card?: number,
+        public cvv?: number,
+        public month?: number,
+        public year?: number,
+    ) {}    
+}
+export class LoginFormModel {
+    constructor(
+        public email?: string,
+        public password?: string
+    ) {}
 }
 
-export type SearchFilter = {
-    Page?: number
-    ID?: string
-    ApiKey?: string
-    Language?: string
-    Query?: string
-}
-
-export type People = {
-    adult?: boolean
-    biography?: string
-    birthday?: string
-    deathday?: string
-    gender?: number
-    homepage?: string
-    id?: number
-    imdb_id?: string
-    name?: string
-    place_of_birth?: string
-    popularity?: number
-    profile_path?: string
-    character?: string
-    job?: string
+export class User {
+    constructor(
+        public name: string
+    ) {}
 }

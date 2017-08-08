@@ -1,5 +1,5 @@
 {
-  "name": "film-app",
+  "name": "phoner",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -12,30 +12,24 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.1.3",
+    "@angular/animations": "^4.2.6",
+    "@angular/cdk": "^2.0.0-beta.8",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/flex-layout": "^2.0.0-beta.8",
     "@angular/forms": "^4.0.0",
     "@angular/http": "^4.0.0",
-    "@angular/material": "^2.0.0-beta.5",
+    "@angular/material": "^2.0.0-beta.8",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
-    "hammerjs": "^2.0.8",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4",
-
-    "body-parser": "1.15.2",
-    "express": "4.13.3",
-    "mongoose": "4.2.5",
-    "serve-favicon": "2.3.0",
-    "morgan": "1.7.0"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.1",
+    "@angular/cli": "^1.2.1",
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
@@ -45,9 +39,9 @@
     "karma": "~1.4.1",
     "karma-chrome-launcher": "~2.0.0",
     "karma-cli": "~1.0.1",
+    "karma-coverage-istanbul-reporter": "^0.2.0",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "karma-coverage-istanbul-reporter": "^0.2.0",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
