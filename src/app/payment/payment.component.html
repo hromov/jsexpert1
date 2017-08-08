@@ -1,39 +1,49 @@
-<h1 *ngIf="done">Оплата прошла успешно</h1>
-<form (ngSubmit)="pay()" #paymentForm="ngForm" *ngIf="!done">
+<h1 *ngIf="done" i18n="@@paymentSuccess">Оплата прошла успешно</h1>
+<form (ngSubmit)="pay()" [formGroup]="paymentForm" *ngIf="!done">
   <md-card>
-    <md-card-title>
+    <md-card-title i18n="@@paymentFormTitle">
       Пополнениие телефона
     </md-card-title>
     <md-card-content fxLayout="column" fxLayout.gt-xs="row" fxLayoutWrap fxLayoutAlign="space-between center">
       <md-input-container fxFlex="69">
-        <input mdInput placeholder="Номер телефона" name="phone" required [(ngModel)]="paymentModel.phone"
-          type="tel" pattern="(\+?\d[- .]*){7,13}" minlength="7" maxlength="13">
+        <span mdPrefix>+380 &nbsp;</span>
+        <input mdInput i18n-placeholder="@@phonePlaceholder" placeholder="Номер телефона" name="phone" formControlName="phone" type="tel">
+        <md-error *ngIf="formErrors.phone">
+          {{formErrors.phone}}
+        </md-error>
       </md-input-container>
       <md-input-container fxFlex="29">
-        <input mdInput placeholder="Сумма" name="amount" [(ngModel)]="paymentModel.amount"
-          type="number" min="5" max="5000" step="5" minlength="1" maxlength="4"
-          (change)="checkAmount($event.target.value)">
+        <input mdInput i18n-placeholder="@@amountPlaceholder" placeholder="Сумма" name="amount" formControlName="amount" type="number">
+        <md-error *ngIf="formErrors.amount">
+          {{formErrors.amount}}
+        </md-error>
       </md-input-container>
-      <span *ngIf="!amountValid" class="error"><md-icon>error</md-icon> Сумма должна быть от 5 до 5000</span>
       <md-input-container fxFlex="100">
-        <input mdInput placeholder="Email" name="email" required [(ngModel)]="paymentModel.email"
-          type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <input mdInput i18n-placeholder="@@emailPlaceholder" placeholder="Email" name="email" formControlName="email" type="email">
+        <md-error *ngIf="formErrors.email">
+          {{formErrors.email}}
+        </md-error>
       </md-input-container>
       <md-input-container fxFlex="69">
-        <input mdInput placeholder="Номер карты" name="card" required [(ngModel)]="paymentModel.card"
-          type="text" pattern="[0-9]{16}" minlength="16" maxlength="16">
+        <input mdInput i18n-placeholder="@@cardPlaceholder" placeholder="Номер карты" name="card" formControlName="card" type="text"
+          maxlength="16">
+        <md-error *ngIf="formErrors.card">
+          {{formErrors.card}}
+        </md-error>
       </md-input-container>
       <md-input-container fxFlex="29">
-        <input mdInput placeholder="CVV" name="cvv" required [(ngModel)]="paymentModel.cvv"
-          type="text" pattern="[0-9]{3}" minlength="3" maxlength="3">
+        <input mdInput i18n-placeholder="@@cvvPlaceholder" placeholder="CVV" name="cvv" formControlName="cvv" type="text" maxlength="3">
+        <md-error *ngIf="formErrors.cvv">
+          {{formErrors.cvv}}
+        </md-error>
       </md-input-container>
-      <div>
-        <md-select placeholder="Месяц" name="month" required [(ngModel)]="paymentModel.month">
+      <div class="card-date">
+        <md-select i18n-placeholder="@@monthPlaceholder" placeholder="Месяц" name="month" formControlName="month">
           <md-option *ngFor="let month of monthes" [value]="month">
             {{ month }}
           </md-option>
         </md-select>
-        <md-select placeholder="Год" name="year" required [(ngModel)]="paymentModel.year">
+        <md-select i18n-placeholder="@@yearPlaceholder" placeholder="Год" name="year" formControlName="year">
           <md-option *ngFor="let year of years" [value]="year">
             {{ year }}
           </md-option>
@@ -41,7 +51,7 @@
       </div>
     </md-card-content>
     <md-card-actions>
-      <button md-button type="submit" color="primary" [disabled]="paymentForm.invalid && amountValid">Пополнить</button>
+      <button md-button i18n="@@paymentButton" type="submit" color="primary" [disabled]="paymentForm.invalid">Пополнить</button>
     </md-card-actions>
   </md-card>
 </form>

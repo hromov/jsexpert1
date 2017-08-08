@@ -10,3 +10,6 @@ form {
 span md-icon {
     vertical-align: middle;
 }
+.card-date {
+    margin-top: 16px;
+}

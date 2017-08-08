@@ -4,14 +4,11 @@ import { LoginFormModel, User } from './shared/model'
 import { SSOService } from './sso.service'
 
 @Injectable()
-export class GuardService implements CanActivate {
-    user: User
-    constructor(
-        private ssoService: SSOService
-    ) {
-        this.ssoService.CurrentUserChanged$.subscribe((user: User | null) => {
-            this.user = user
-        })
+export class GuardService {
+    private logined: boolean
+    constructor(private router: Router) {}
+    public isLoggedIn() {
+        return this.logined
     }
 
     public canActivate(): boolean {
