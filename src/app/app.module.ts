@@ -13,6 +13,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { GuardService } from './guard.service'
 import { SSOService } from './sso.service'
 import { SSOApiService } from './sso-api.service'
+import { ErrorToken, ErrorMessages } from './shared/errorToken'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,7 +37,12 @@ const appRoutes: Routes = [
     MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [GuardService, SSOService, SSOApiService],
+  providers: [
+    GuardService,
+    SSOService,
+    SSOApiService,
+    {provide: ErrorToken, useValue: ErrorMessages},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

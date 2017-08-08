@@ -1,39 +1,31 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, InjectionToken, OnInit } from '@angular/core'
 import { GuardService } from '../guard.service'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { ValidationMessages } from '../shared/messages'
+import { LoginFormModel } from './login.model'
+import { Router } from '@angular/router'
+import { SSOService } from '../sso.service'
+import { ErrorToken } from '../shared/errorToken'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup
+  loginError: boolean
+  messages: any
+  loginForm: LoginFormModel
   constructor(
-    private guardService: GuardService,
-    private formBuilder: FormBuilder
-  ) { }
-
-  formErrors = {
-    'email': '',
-    'password': ''
-  };
-
-  ngOnInit() {
-    this.buildLoginForm()
-  }
-
-  buildLoginForm() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [
-        Validators.required,
-        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}')
-      ]]
+    private ssoService: SSOService,
+    private router: Router,
+    @Inject(ErrorToken) errorMessages: any
+  ) {
+    this.messages = errorMessages
+    ssoService.CurrentUserChanged$.subscribe(user => {
+      if(user) {
+        this.router.navigate(['/payment'])
+      } else {
+        this.loginError = true
+      }
     })
     this.loginForm.valueChanges.subscribe(data => this.onValueChanged(data))
     this.onValueChanged()
@@ -56,8 +48,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  ngOnInit() {
+    this.loginForm = new LoginFormModel()
+  }
+
   login() {
-    this.guardService.login(this.loginForm.value)
+    if(this.loginForm.isValid()) {
+      this.ssoService.signIn(this.loginForm)
+    }
   }
 
 }

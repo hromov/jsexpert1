@@ -1,25 +1,21 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()">
+<form (ngSubmit)="login()">
   <md-card>
-    <md-card-title i18n="@@enter">Вход</md-card-title>
+    <md-card-title i18n="@@loginTitle">Вход</md-card-title>
     <md-card-content>
       <md-input-container>
-        <input mdInput i18n-placeholder="@@emailPlaceholder" placeholder="Введите email" name="email" type="email"
-          formControlName="email">
-        <md-error *ngIf="formErrors.email">
-          {{formErrors.email}}
-        </md-error>
+        <input mdInput i18n-placeholder="@@emailPlaceholder" placeholder="Введите email" name="email" required
+          [(ngModel)]="loginForm.email" type="email" [pattern]=loginForm.emailRegExp>
+        <md-error>{{messages?.emailError}}</md-error>
       </md-input-container>
       <md-input-container>
-        <input mdInput i18n-placeholder="@@passwordPlaceholder" placeholder="Введите пароль" name="password" type="password"
-          formControlName="password">
-        <md-error *ngIf="formErrors.password">
-          {{formErrors.password}}
-        </md-error>
+        <input mdInput i18n-placeholder="@@passwordPlaceholder"  placeholder="Введите пароль" name="password" required
+          [(ngModel)]="loginForm.password" type="password" [pattern]=loginForm.passwordRegExp>
+        <md-error>{{messages?.passwordError}}</md-error>
       </md-input-container>
+      <md-error *ngIf="loginError">{{messages?.loginError}}</md-error>
     </md-card-content>
     <md-card-actions>
-      <button md-button i18n="@@loginButton" type="submit" color="primary" [disabled]="loginForm.invalid">Войти</button>
+      <button md-button type="submit" color="primary" [disabled]="!loginForm.isValid()" i18n="@@loginButton">Войти</button>
     </md-card-actions>
   </md-card>
 </form>
-<button md-button routerLink="/payment">Payment</button>

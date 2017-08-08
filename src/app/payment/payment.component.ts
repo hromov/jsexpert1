@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ValidationMessages } from '../shared/messages'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Component, OnInit } from '@angular/core'
+import { PaymentFormModel } from './payment.model'
 
 @Component({
   selector: 'app-payment',
