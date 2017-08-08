@@ -10,7 +10,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PaymentComponent } from './payment/payment.component';
-import { CanActivatePayment, GuardService } from './guard.service'
+import { GuardService } from './guard.service'
+import { SSOService } from './sso.service'
+import { SSOApiService } from './sso-api.service'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,7 +36,7 @@ const appRoutes: Routes = [
     MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CanActivatePayment, GuardService],
+  providers: [GuardService, SSOService, SSOApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
