@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@angular/material';
@@ -17,7 +17,7 @@ import { ErrorToken, ErrorMessages } from './shared/errorToken'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'payment', component: PaymentComponent, canActivate: [GuardService] },
+  { path: 'payment', component: PaymentComponent, canActivate: [CanActivatePayment]},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ]
 
@@ -30,6 +30,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
     FlexLayoutModule,

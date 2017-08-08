@@ -27,6 +27,25 @@ export class LoginComponent implements OnInit {
         this.loginError = true
       }
     })
+    this.loginForm.valueChanges.subscribe(data => this.onValueChanged(data))
+    this.onValueChanged()
+  }
+
+  onValueChanged(data?: any) {
+    if(this.loginForm) {
+      const form = this.loginForm;
+      for (const field in this.formErrors) {
+        this.formErrors[field] = '';
+        const control = form.get(field);
+  
+        if (control && control.dirty && !control.valid) {
+          const messages = ValidationMessages[field];
+          for (const key in control.errors) {
+            this.formErrors[field] += messages[key] + ' ';
+          }
+        }
+      }
+    }
   }
 
   ngOnInit() {
