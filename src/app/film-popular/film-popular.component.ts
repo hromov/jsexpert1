@@ -8,8 +8,8 @@ import { Film } from '../shared/model'
   styleUrls: ['./film-popular.component.css']
 })
 export class FilmPopularComponent implements OnInit {
-  currentPage:number
-  totalPages:number
+  currentPage: number
+  totalPages: number
   films: Array<Film> = []
   loading: boolean
   constructor(
@@ -23,15 +23,14 @@ export class FilmPopularComponent implements OnInit {
 
   getPopularFilms(page?: number) {
     this.loading = true
-    this.filmService.getPopularFilms(page).subscribe(filmList => {
-      this.totalPages = filmList.total_pages
-      this.films = this.films.concat(...filmList.results)
-    }, err => {
-      console.log(err)
-      this.loading = false
-    }, () => {
-      this.loading = false
-    })
+    this.filmService.getPopularFilms(page).subscribe(
+      (filmList: any) => {
+        this.totalPages = filmList.total_pages
+        this.films = this.films.concat(...filmList.results)
+      },
+      err => this.loading = false,
+      () => this.loading = false
+    )
   }
 
   private nextPage() {

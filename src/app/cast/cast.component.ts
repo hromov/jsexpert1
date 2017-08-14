@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService } from '../film.service'
 import { Film, People } from '../shared/model'
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-cast',
@@ -33,7 +33,7 @@ export class CastComponent implements OnInit {
       Observable.forkJoin([
         this.filmService.getFilmById(this.filmID),
         this.filmService.getCredits(this.filmID)
-      ]).subscribe(([film, credits] ) => {
+      ]).subscribe(([film, credits]:any ) => {
         this.film = film
         this.cast = credits.cast
         this.crew = credits.crew

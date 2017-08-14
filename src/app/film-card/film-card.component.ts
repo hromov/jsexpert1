@@ -27,12 +27,9 @@ export class FilmCardComponent implements OnInit {
       }, err => {
         console.error(err)
       })
-      this.filmService.getFavoriteItem(this.filmId).subscribe(favorites => {
+      this.filmService.getFavoriteItem(this.filmId).subscribe((favorites:any) => {
         this.isFavorite = favorites.some(favorite => favorite.status)
       })
-    } else {
-      return
-    }
-    
+    }    
   }
 }

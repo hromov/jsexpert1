@@ -11,9 +11,6 @@ export class AppComponent {
     { path: '/', icon: 'home', label: 'Главная'},
     { path: '/popular', icon: 'list', label: 'Популярные фильмы'},
     { path: '/favorites', icon: 'star', label: 'Избранные'}
-    /*,
-    { path: '/profile', icon: 'person', label: 'Профиль'}
-    */
   ];
 
 }

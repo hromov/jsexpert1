@@ -9,21 +9,18 @@ import { FilmService } from '../film.service';
 export class FilmFavoritesComponent implements OnInit {
   loading: boolean = true
   films: Array<Object> = []
-  constructor( private filmService: FilmService ) {
-    this.filmService.getFavoritesItem().subscribe(films => {
-      console.log(films);
-      this.films = films
-    }, err => {
-      this.loading = false
-    }, () => {
-      this.loading = false
-    })
+  constructor(private filmService: FilmService) {
+    this.filmService.getFavoritesItem().subscribe(
+      (films: any) => this.films = films,
+      err => this.loading = false,
+      () => this.loading = false
+    )
   }
 
   ngOnInit() {
   }
 
-  filmsNotFound() : boolean{
+  filmsNotFound(): boolean {
     return !this.loading && !this.films.length
   }
 

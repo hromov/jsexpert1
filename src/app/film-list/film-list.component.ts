@@ -43,17 +43,11 @@ export class FilmListComponent implements OnInit {
   private getFilms(filmName: string) {
     this.loading = true
     this.filmService.getFilms(filmName || "", this.currentPage)
-      .subscribe(filmList => {
-        console.log(filmList)
+      .subscribe((filmList:any) => {
         this.totalPages = filmList.total_pages
         this.filmList = this.filmList.concat(...filmList.results)
-        console.log(this.filmList)
-      }, err => {
-        this.loading = false
-        console.error(err)
-      }, () => {
-        this.loading = false
-      })
+      }, err => this.loading = false,
+      () => this.loading = false)
   }
 
   private nextPage() {

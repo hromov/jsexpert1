@@ -38,7 +38,7 @@ export class PeopleDetailComponent implements OnInit {
     }, err => {
       console.error(err)
     })
-    this.filmService.getPersonMovies(this.personID).subscribe(filmList => {
+    this.filmService.getPersonMovies(this.personID).subscribe((filmList:any) => {
       this.cast = filmList.cast
       this.crew = filmList.crew
     })

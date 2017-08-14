@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import {Observable} from 'rxjs/Observable'
+import { Observable } from 'rxjs/Rx'
 import { FilmService } from '../film.service'
 import { SearchService } from './search.service'
 import { Film } from '../shared/model'
@@ -29,7 +29,6 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    //console.log(this.filmName)
     this.searchService.changeFilmName(this.filmName)
   }
 
@@ -38,7 +37,6 @@ export class SearchComponent implements OnInit {
   }
 
   updateFilmNames() {
-    //console.log(this.filmName)
     this.filmService.getFilms(this.filmName || "", 1)
     .map((r: any) => r.results || [])
     .subscribe((filmList:Array<Film>) => {

@@ -29,38 +29,33 @@ export class FilmDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(!this.filmID) {
+    if (!this.filmID) {
       return
     }
     this.midImgPath = this.filmService.midImgPath
     this.smallImgPath = this.filmService.smallImgPath
     this.noImage = this.filmService.noImage
-    this.filmService.getFilmById(this.filmID).subscribe((film:Film) => {
-      this.film = film
-    }, err => {
-      this.loading = false
-    }, () => {
-      this.loading = false
-    })
-    this.filmService.getCredits(this.filmID).subscribe(credits => {
-      this.cast = credits.cast.slice(0,10)
-    })
-    this.filmService.getFavoriteItem(this.filmID).subscribe(favorites => {
-      this.isFavorite = favorites.some(favorite => favorite.status)     
-    }, err => {
-      this.favoriteChecked = true
-    }, () => {
-      this.favoriteChecked = true
-    })
+    this.filmService.getFilmById(this.filmID).subscribe(
+      (film: Film) => this.film = film,
+      err => this.loading = false,
+      () => this.loading = false
+    )
+    this.filmService.getCredits(this.filmID).subscribe(
+      (credits: any) => this.cast = credits.cast.slice(0, 10)
+    )
+    this.filmService.getFavoriteItem(this.filmID).subscribe(
+      (favorites: any) => this.isFavorite = favorites.some(favorite => favorite.status),
+      err => this.favoriteChecked = true,
+      () => this.favoriteChecked = true
+    )
   }
 
   saveFavorite() {
     this.favoriteChecked = false
-    this.filmService.saveFavoriteItem(this.filmID).subscribe(favorite => {
-      this.isFavorite = favorite && favorite.status === "OK"
-    }, err => {
-      console.log(err)
-    })    
+    this.filmService.saveFavoriteItem(this.filmID).subscribe(
+      (favorite: any) => this.isFavorite = favorite && favorite.status === "OK",
+      err => console.log(err)
+    )
   }
 
 }

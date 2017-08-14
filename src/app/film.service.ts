@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
+//import { RequestOptions, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable'
 import { SearchFilter } from './shared/model'
 
 @Injectable()
 export class FilmService {
-  //searchUrl: string = "http://www.omdbapi.com";
   imgPath: string = 'https://image.tmdb.org/t/p'
   midImgPath: string = `${this.imgPath}/w500/`
   smallImgPath: string = `${this.imgPath}/w185/`
@@ -27,96 +27,76 @@ export class FilmService {
   defaultLanguage: string = 'en-US'
   
   constructor(
-    private http: Http
+    private http: HttpClient
   ) { }
-
-  getSearchParams(filter: SearchFilter) {
-    const searchParams = new URLSearchParams()
-    searchParams.set('api_key', filter.ApiKey || this.apiKey)
-    searchParams.set('query', filter.Query)
-    searchParams.set('language', filter.Language || this.defaultLanguage)
-    searchParams.set('page', String(filter.Page || 1))
-    return searchParams
+  getRequestParams(filter: SearchFilter): HttpParams {
+    let requestParams = new HttpParams()
+    requestParams = requestParams.set('api_key', filter.ApiKey || this.apiKey)
+    requestParams = requestParams.set('language', filter.Language || this.defaultLanguage)
+    requestParams = requestParams.set('page', String(filter.Page || 1))
+    filter.Query && (requestParams = requestParams.set('query', filter.Query))
+    return requestParams
   }
 
   getFilms (filmName: string, page?: number) {
-    let filter: SearchFilter = {
+    const filter: SearchFilter = {
       Query: filmName,
       Page: page || 1
     }
-    const options = new RequestOptions({ search: this.getSearchParams(filter) });
-    console.log(this.searchMovieUrl)
+    const options = { params: this.getRequestParams(filter)}
     return this.http.get(this.searchMovieUrl, options)
-      .map((r: Response) => r.json() || [])
-      .catch((err:Error) => { return Observable.throw(err) })
   }
 
   getFilmById (filmId: string) {
-    let filter: SearchFilter = {
+    const filter: SearchFilter = {
       ID: filmId
     }
-    const options = new RequestOptions({ search: this.getSearchParams(filter) });
+    const options = { params: this.getRequestParams(filter)}
     return this.http.get(`${this.movieUrl}/${filmId}`, options)
-      .map((r: Response) => r.json() || null)
-      .catch((err:Error) => { return Observable.throw(err) })
   }
 
   getCredits (filmId: string) {
-    let filter: SearchFilter = {
+    const filter: SearchFilter = {
       ID: filmId
     }
-    const options = new RequestOptions({ search: this.getSearchParams(filter) });
+    const options = { params: this.getRequestParams(filter)}
     return this.http.get(`${this.movieUrl}/${filmId}/credits`, options)
-      .map((r: Response) => r.json() || null)
-      .catch((err:Error) => { return Observable.throw(err) })
   }
 
   getPopularFilms (page?: number) {
-    let filter: SearchFilter = {
+    const filter: SearchFilter = {
       Page: page || 1
     }
-    const options = new RequestOptions({search: this.getSearchParams(filter)})
+    const options = { params: this.getRequestParams(filter)}
     return this.http.get(this.popularMovieUrl, options)
-      .map((r: Response) => r.json() || null)
-      .catch((err: Error) => { return Observable.throw(err)})
   }
 
   getPerson(personId: string) {
-    let filter: SearchFilter = {
+    const filter: SearchFilter = {
       ID: personId
     }
-    const options = new RequestOptions({ search: this.getSearchParams(filter) });
+    const options = { params: this.getRequestParams(filter)}
     return this.http.get(`${this.personUrl}/${personId}`, options)
-      .map((r: Response) => r.json() || null)
-      .catch((err:Error) => { return Observable.throw(err) })
   }
 
   getPersonMovies(personId: string) {
-    let filter: SearchFilter = {
+    const filter: SearchFilter = {
       ID: personId
     }
-    const options = new RequestOptions({ search: this.getSearchParams(filter) });
+    const options = { params: this.getRequestParams(filter)}
     return this.http.get(`${this.personUrl}/${personId}/movie_credits`, options)
-      .map((r: Response) => r.json() || null)
-      .catch((err:Error) => { return Observable.throw(err) })
   }
 
   getFavoritesItem () {
     return this.http.get("http://localhost:4200/getFavoritesList")
-      .map((r: Response) => r.json() || [])
-      .catch((err:Error) => { return Observable.throw(err) })
   }
 
   saveFavoriteItem (filmId: string) {
-    let favorite = {filmId: filmId, status: true};
+    const favorite = {filmId: filmId, status: true};
     return this.http.post("http://localhost:4200/saveFavoriteItem", favorite)
-      .map((r: Response) => r.json() || null)
-      .catch((err:Error) => { return Observable.throw(err) })
   }
 
   getFavoriteItem(filmId:string)  {
     return this.http.get(`http://localhost:4200/getFilmItemById?filmId=${filmId}`)
-      .map((r: Response) => r.json() || null)
-      .catch((err:Error) => { return Observable.throw(err) })
   }
 }
