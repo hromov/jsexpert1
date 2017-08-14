@@ -22,7 +22,6 @@ export class PeopleDetailComponent implements OnInit {
   ) {
     this.route.params.subscribe(params => {
       this.personID = params['id']
-      console.log(this.personID)
     })
   }
 

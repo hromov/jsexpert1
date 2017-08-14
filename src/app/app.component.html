@@ -4,6 +4,8 @@
       <a md-button *ngFor="let link of links" [routerLink]="link.path">
         <md-icon>{{link.icon}}</md-icon> &nbsp; {{link.label}}
       </a>
+      <a md-button routerLink="/login" *ngIf="!user"><md-icon>account_circle</md-icon> &nbsp; Вход</a>
+      <button md-button (click)="signOut()" *ngIf="user"><md-icon>exit_to_app</md-icon> &nbsp; Выход</button>
     </div>
     <app-search></app-search>
     <button fxHide.gt-xs md-mini-fab (click)="sidenav.toggle()"><md-icon>menu</md-icon></button>

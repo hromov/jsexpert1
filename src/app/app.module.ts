@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -20,15 +20,22 @@ import { FilmFavoritesComponent } from './film/film-favorites/film-favorites.com
 import { CastComponent } from './persons/cast/cast.component';
 import { PeopleDetailComponent } from './persons/people-detail/people-detail.component';
 import { PersonCardComponent } from './persons/person-card/person-card.component';
+import { LoginComponent } from './login/login.component';
+import { AdminGuardService } from './users/guard.service'
+import { SSOService } from './users/sso.service'
+import { SSOApiService } from './users/sso-api.service'
+import { ErrorToken, ErrorMessages } from './shared/errorToken'
 
 const appRoutes: Routes = [
   { path: '', component: FilmPopularComponent },
   { path: 'films', component: FilmListComponent },
   { path: 'films/:id', component: FilmDetailComponent},
+  { path: 'films/:id/edit', component: FilmDetailComponent, canActivate: [AdminGuardService]},
   { path: 'films/:id/cast', component: CastComponent},
   { path: 'peoples/:id', component: PeopleDetailComponent},
   { path: 'popular', component: FilmPopularComponent },
-  { path: 'favorites', component: FilmFavoritesComponent }
+  { path: 'favorites', component: FilmFavoritesComponent },
+  { path: 'login', component: LoginComponent}
 ];
 
 
@@ -43,18 +50,27 @@ const appRoutes: Routes = [
     CastComponent,
     PeopleDetailComponent,
     PersonCardComponent,
-    FilmFavoritesComponent
+    FilmFavoritesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [FilmService, SearchService],
+  providers: [
+    FilmService,
+    SearchService,
+    AdminGuardService,
+    SSOService,
+    SSOApiService,
+    {provide: ErrorToken, useValue: ErrorMessages}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

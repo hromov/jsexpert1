@@ -1,0 +1,21 @@
+<form (ngSubmit)="login()">
+  <md-card>
+    <md-card-title>Вход</md-card-title>
+    <md-card-content>
+      <md-input-container>
+        <input mdInput placeholder="Введите email" name="email" required
+          [(ngModel)]="loginForm.email" type="email" [pattern]=loginForm.emailRegExp>
+        <md-error>{{messages?.emailError}}</md-error>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Введите пароль" name="password" required
+          [(ngModel)]="loginForm.password" type="password" [pattern]=loginForm.passwordRegExp>
+        <md-error>{{messages?.passwordError}}</md-error>
+      </md-input-container>
+      <md-error *ngIf="loginError">{{messages?.loginError}}</md-error>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button type="submit" color="primary" [disabled]="!loginForm.isValid()">Войти</button>
+    </md-card-actions>
+  </md-card>
+</form>

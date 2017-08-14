@@ -2,7 +2,8 @@
   <film-card
     [fxFlex.gt-xs]="32"
     *ngFor="let film of films"
-    [filmId]="film.id">
+    [filmId]="film.id"
+    [canEdit]="canEdit">
   </film-card>  
 </div>
 <md-spinner *ngIf="loading"></md-spinner>

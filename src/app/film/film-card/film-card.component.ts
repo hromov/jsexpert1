@@ -9,7 +9,8 @@ import { Film } from '../../shared/model'
   styleUrls: ['./film-card.component.css']
 })
 export class FilmCardComponent implements OnInit {
-  @Input() filmId: string;
+  @Input() filmId: string
+  @Input() canEdit: boolean
   Film: Film
   midImgPath: string
   noImage: string
