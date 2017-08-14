@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { FilmService } from '../film.service'
-import { Film } from '../shared/model'
-import { SearchService } from '../search/search.service'
+import { FilmService } from '../../film.service'
+import { Film } from '../../shared/model'
+import { SearchService } from '../../search/search.service'
 import { ActivatedRoute } from '@angular/router'
 
 @Component({

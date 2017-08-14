@@ -5,8 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { FilmListComponent } from './film-list/film-list.component';
-import { FilmCardComponent } from './film-card/film-card.component';
+import { FilmListComponent } from './film/film-list/film-list.component';
+import { FilmCardComponent } from './film/film-card/film-card.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -14,12 +14,12 @@ import 'hammerjs';
 import { FilmService} from './film.service';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
-import { FilmPopularComponent } from './film-popular/film-popular.component';
-import { FilmDetailComponent } from './film-detail/film-detail.component';
-import { CastComponent } from './cast/cast.component';
-import { PeopleDetailComponent } from './people-detail/people-detail.component';
-import { PersonCardComponent } from './person-card/person-card.component';
-import { FilmFavoritesComponent } from './film-favorites/film-favorites.component';
+import { FilmPopularComponent } from './film/film-popular/film-popular.component';
+import { FilmDetailComponent } from './film/film-detail/film-detail.component';
+import { FilmFavoritesComponent } from './film/film-favorites/film-favorites.component';
+import { CastComponent } from './persons/cast/cast.component';
+import { PeopleDetailComponent } from './persons/people-detail/people-detail.component';
+import { PersonCardComponent } from './persons/person-card/person-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: FilmPopularComponent },

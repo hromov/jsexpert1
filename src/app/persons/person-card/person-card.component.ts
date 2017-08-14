@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { People } from '../shared/model'
-import { FilmService } from '../film.service'
+import { People } from '../../shared/model'
+import { FilmService } from '../../film.service'
 
 @Component({
   selector: 'app-person-card',
