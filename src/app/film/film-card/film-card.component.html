@@ -13,6 +13,7 @@
 	</md-card-content>
 	<md-card-actions>
 	  <button md-button color="accent">Подробнее</button>
+    <!-- canEdit временная кнопка для дз -->
     <a md-icon-button *ngIf="canEdit" [routerLink]="['/films', Film.id, 'edit']"><md-icon>edit</md-icon></a>
 	</md-card-actions>
 </md-card>

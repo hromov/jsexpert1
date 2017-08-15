@@ -9,20 +9,22 @@ import { Film } from '../../shared/model'
   styleUrls: ['./film-card.component.css']
 })
 export class FilmCardComponent implements OnInit {
-  @Input() filmId: string
-  @Input() canEdit: boolean
+  @Input() filmId: string;
   Film: Film
   midImgPath: string
   noImage: string
   isFavorite: boolean
-  constructor(
-    private filmService: FilmService
-  ) { }
+
+  //для дз
+  @Input() canEdit: boolean
+  @Input() film: Film
+  
+  constructor(private filmService: FilmService) { }
 
   ngOnInit() {
+    this.midImgPath = this.filmService.midImgPath
+    this.noImage = this.filmService.noImage
     if(this.filmId) {
-      this.midImgPath = this.filmService.midImgPath
-      this.noImage = this.filmService.noImage
       this.filmService.getFilmById(this.filmId).subscribe(film => {
         this.Film = film
       }, err => {
@@ -31,6 +33,9 @@ export class FilmCardComponent implements OnInit {
       this.filmService.getFavoriteItem(this.filmId).subscribe((favorites:any) => {
         this.isFavorite = favorites.some(favorite => favorite.status)
       })
-    }    
+    } else {
+      //Временно, для дз
+      this.Film = this.film
+    }  
   }
 }

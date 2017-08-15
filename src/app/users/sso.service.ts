@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 import { ReplaySubject } from 'rxjs/ReplaySubject'
 import { Observable } from 'rxjs/Observable'
-import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 import { User } from './user.model'
 import { LoginFormModel } from '../login/login.model'
 import { Subject }    from 'rxjs/Subject'

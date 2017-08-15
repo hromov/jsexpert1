@@ -1,9 +1,12 @@
+<app-film-add *ngIf="isAdmin"></app-film-add>
 <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
+  <!-- film, canEdit передаем временно для выполнения дз -->
   <film-card
     [fxFlex.gt-xs]="32"
     *ngFor="let film of films"
     [filmId]="film.id"
-    [canEdit]="canEdit">
+    [film]="film"
+    [canEdit]="isAdmin">
   </film-card>  
 </div>
 <md-spinner *ngIf="loading"></md-spinner>

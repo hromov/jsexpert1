@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../../film.service'
 import { Film } from '../../shared/model'
 import { AdminGuardService } from '../../users/guard.service'
+import { FilmAddService } from '../film-add/film-add.service'
+import { SnackService } from '../../snack.service'
 
 @Component({
   selector: 'app-film-popular',
@@ -13,16 +15,24 @@ export class FilmPopularComponent implements OnInit {
   totalPages: number
   films: Array<Film> = []
   loading: boolean
-  canEdit: boolean
+  isAdmin: boolean
   constructor(
     private filmService: FilmService,
-    private adminGuardService: AdminGuardService
+    //для дз
+    private adminGuardService: AdminGuardService,
+    private filmAddService: FilmAddService,
+    private snackService: SnackService
   ) {}
 
   ngOnInit() {
     this.currentPage = 1
     this.getPopularFilms(this.currentPage)
-    this.canEdit = this.adminGuardService.canActivate()
+    //для дз
+    this.isAdmin = this.adminGuardService.canActivate()
+    this.filmAddService.NewFilm$.subscribe((film: Film) => {
+      this.films.unshift(film)
+      this.snackService.message(`Фильм ${film.title} добавлен!`)
+    })
   }
 
   getPopularFilms(page?: number) {

@@ -38,5 +38,4 @@ export class LoginComponent implements OnInit {
       this.ssoService.signIn(this.loginForm)
     }
   }
-
 }

@@ -4,6 +4,7 @@
       <a md-button *ngFor="let link of links" [routerLink]="link.path">
         <md-icon>{{link.icon}}</md-icon> &nbsp; {{link.label}}
       </a>
+      <!-- для дз -->
       <a md-button routerLink="/login" *ngIf="!user"><md-icon>account_circle</md-icon> &nbsp; Вход</a>
       <button md-button (click)="signOut()" *ngIf="user"><md-icon>exit_to_app</md-icon> &nbsp; Выход</button>
     </div>
@@ -20,7 +21,6 @@
       </a>
     </nav>
   </md-sidenav>
-
   <div class="app-content">
     <router-outlet></router-outlet>
   </div>
