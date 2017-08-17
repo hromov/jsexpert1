@@ -1,6 +1,6 @@
-<md-card *ngIf="Film" [routerLink]="['/films', Film.id]">
-  <img *ngIf="Film.poster_path" md-card-image src="{{midImgPath}}{{Film.poster_path}}">
-  <img *ngIf="!Film.poster_path" md-card-image src="{{noImage}}">
+<md-card *ngIf="Film">
+  <img *ngIf="Film.poster_path" md-card-image src="{{midImgPath}}{{Film.poster_path}}" [routerLink]="['/films', Film.id]">
+  <img *ngIf="!Film.poster_path" md-card-image src="{{noImage}}" [routerLink]="['/films', Film.id]">
   <md-icon class="favorite" color="primary" *ngIf="isFavorite">start</md-icon>
 	<md-card-header>
     <md-card-title>{{Film.title}}</md-card-title>
@@ -12,7 +12,7 @@
     <span fxFlex="49">IMDB голосов: {{Film.vote_count}}</span>
 	</md-card-content>
 	<md-card-actions>
-	  <button md-button color="accent">Подробнее</button>
+	  <button md-button color="accent" [routerLink]="['/films', Film.id]">Подробнее</button>
     <!-- canEdit временная кнопка для дз -->
     <a md-icon-button *ngIf="canEdit" [routerLink]="['/films', Film.id, 'edit']"><md-icon>edit</md-icon></a>
 	</md-card-actions>

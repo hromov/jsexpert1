@@ -23,9 +23,6 @@ import { LoadingComponent } from './loading/loading.component'
 const appRoutes: Routes = [
   { path: '', loadChildren: './films/films.module#FilmsModule'},
   { path: 'films/:id/cast', loadChildren: './persons/persons.module#PersonsModule'},
-  { path: 'films', loadChildren: './films/films.module#FilmsModule'},
-  { path: 'popular', loadChildren: './films/films.module#FilmsModule'},
-  { path: 'favorites', loadChildren: './films/films.module#FilmsModule'},
   { path: 'peoples', loadChildren: './persons/persons.module#PersonsModule'},
   { path: 'login', component: LoginComponent}
 ];

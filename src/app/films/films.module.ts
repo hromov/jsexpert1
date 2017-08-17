@@ -22,7 +22,8 @@ const filmsRoutes: Routes = [
     component: FilmPopularComponent,
     resolve: {
       filmList: FilmPopularResolver
-    }
+    },
+    pathMatch: 'full'
   },
   { path: 'films', component: FilmListComponent },
   {
