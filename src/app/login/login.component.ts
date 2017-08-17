@@ -20,13 +20,6 @@ export class LoginComponent implements OnInit {
     @Inject(ErrorToken) errorMessages: any
   ) {
     this.messages = errorMessages
-    ssoService.CurrentUser$.subscribe(user => {
-      if(user) {
-        this.router.navigate(['/'])
-      } else {
-        this.loginError = true
-      }
-    })
   }
   
   ngOnInit() {
@@ -35,7 +28,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     if(this.loginForm.isValid()) {
-      this.ssoService.signIn(this.loginForm)
+      this.ssoService.signIn(this.loginForm).subscribe(user => {
+        console.log(user)
+        if(user) {
+          this.router.navigate(['/'])
+        } else {
+          this.loginError = true
+        }
+      })
     }
   }
 }
