@@ -11,5 +11,5 @@
 </div>
 <md-spinner *ngIf="loading"></md-spinner>
 <button *ngIf="films.length && currentPage !== totalPages" [disabled]="loading" md-raised-button color="primary" (click)="nextPage()">
-  Показать еще &nbsp;<md-icon>expand_more</md-icon>
+  <ng-container i18n="@@showMoreButton">Показать еще</ng-container> &nbsp;<md-icon>expand_more</md-icon>
 </button>

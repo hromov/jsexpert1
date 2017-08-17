@@ -1,4 +1,4 @@
-<h2 *ngIf="filmsNotFound()">Фильмы не найден :(</h2>
+<h2 *ngIf="filmsNotFound()" i18n="@@filmsNotFoundError">Фильмы не найден :(</h2>
 <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
   <film-card
     [fxFlex.gt-xs]="32"
@@ -8,5 +8,5 @@
 </div>
 <md-spinner *ngIf="loading"></md-spinner>
 <button *ngIf="filmList.length && currentPage !== totalPages" [disabled]="loading" md-raised-button color="primary" (click)="nextPage()">
-  Показать еще &nbsp;<md-icon>expand_more</md-icon>
+  <ng-container i18n="@@showMoreButton">Показать еще</ng-container> &nbsp;<md-icon>expand_more</md-icon>
 </button>

@@ -5,11 +5,11 @@
         <md-icon>{{link.icon}}</md-icon> &nbsp; {{link.label}}
       </a>
       <button md-button (click)="signOut()" *ngIf="ssoService.CurrentUser$ | async; else notLoginnedBlock">
-        <md-icon>exit_to_app</md-icon> &nbsp; Выход
+        <md-icon>exit_to_app</md-icon> &nbsp; <ng-container i18n="@@exit">Выход</ng-container>
       </button>
       <ng-template #notLoginnedBlock>
         <button md-button routerLink="/login">
-          <md-icon>account_circle</md-icon> &nbsp; Вход
+          <md-icon>account_circle</md-icon> &nbsp; <ng-container i18n="@@enter">Вход</ng-container>
         </button>
       </ng-template>
     </div>

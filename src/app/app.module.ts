@@ -15,10 +15,10 @@ import { LoginComponent } from './login/login.component'
 import { AdminGuardService } from './users/guard.service'
 import { SSOService } from './users/sso.service'
 import { SSOApiService } from './users/sso-api.service'
-import { ErrorToken, ErrorMessages } from './shared/errorToken'
 import { SnackService } from './snack.service'
 import { FilmPopularResolver } from './films/film-popular/film-popular.resolver';
 import { LoadingComponent } from './loading/loading.component'
+import { LanguageService } from './language.service'
 
 const appRoutes: Routes = [
   { path: '', loadChildren: './films/films.module#FilmsModule'},
@@ -52,7 +52,7 @@ const appRoutes: Routes = [
     SSOService,
     SSOApiService,
     SnackService,
-    {provide: ErrorToken, useValue: ErrorMessages}
+    LanguageService
   ],
   bootstrap: [AppComponent]
 })

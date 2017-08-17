@@ -9,7 +9,7 @@
     </div>
   </md-card>
   <div *ngIf="cast && cast.length" class="films" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
-    <h2 fxFlex="100">Актер в фильмах</h2>
+    <h2 fxFlex="100" i18n="@@actorInFilms">Актер в фильмах</h2>
     <md-card *ngFor="let film of cast"
       fxFlex="49" fxFlex.gt-xs="24"
       [routerLink]="['/films', film.id]">
@@ -22,7 +22,7 @@
     </md-card>
   </div>
   <div *ngIf="crew && crew.length" class="films" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
-    <h2 fxFlex="100">Исполнитель в фильмах</h2>
+    <h2 fxFlex="100" i18n="@@crewInFilms">Исполнитель в фильмах</h2>
     <md-card *ngFor="let film of crew"
       fxFlex="49" fxFlex.gt-xs="24"
       [routerLink]="['/films', film.id]">

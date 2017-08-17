@@ -1,0 +1,5 @@
+[
+    { "path": "/", "icon": "home", "label": "Главная"},
+    { "path": "/popular", "icon": "list", "label": "Популярные фильмы"},
+    { "path": "/favorites", "icon": "star", "label": "Избранныe"}
+  ]

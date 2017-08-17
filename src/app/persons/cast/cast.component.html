@@ -6,7 +6,7 @@
     </md-card-title>
   </md-card>
   <md-tab-group>
-    <md-tab *ngIf="cast" label="Актеры">
+    <md-tab *ngIf="cast" i18n-label="@@actors" label="Актеры">
       <div class="people" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">
       <app-person-card *ngFor="let actor of cast"
         [person]="actor"
@@ -15,7 +15,7 @@
       </app-person-card>
       </div>
     </md-tab>
-    <md-tab *ngIf="crew" label="Создатели">
+    <md-tab *ngIf="crew" i18n-label="@@crew" label="Создатели">
       <div class="people" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between stretch">
         <app-person-card *ngFor="let member of crew"
           [person]="member"

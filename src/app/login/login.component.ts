@@ -3,7 +3,6 @@ import { AdminGuardService } from '../users/guard.service'
 import { LoginFormModel } from './login.model'
 import { Router } from '@angular/router'
 import { SSOService } from '../users/sso.service'
-import { ErrorToken } from '../shared/errorToken'
 
 @Component({
   selector: 'app-login',
@@ -12,15 +11,11 @@ import { ErrorToken } from '../shared/errorToken'
 })
 export class LoginComponent implements OnInit {
   loginError: boolean
-  messages: any
   loginForm: LoginFormModel
   constructor(
     private ssoService: SSOService,
-    private router: Router,
-    @Inject(ErrorToken) errorMessages: any
-  ) {
-    this.messages = errorMessages
-  }
+    private router: Router
+  ) { }
   
   ngOnInit() {
     this.loginForm = new LoginFormModel()

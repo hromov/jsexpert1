@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable'
 import { SearchFilter } from './shared/model'
 import { FilmList, Film } from './films/model'
 import { Credits } from './persons/model'
+import { LanguageService } from './language.service'
 
 @Injectable()
 export class FilmService {
@@ -26,15 +27,14 @@ export class FilmService {
   popularMovieUrl: string = `${this.movieUrl}/popular`
   searchMovieUrl: string = `${this.searchUrl}/movie`
   
-  defaultLanguage: string = 'en-US'
-  
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private ls: LanguageService
+  ) {}
   getRequestParams(filter: SearchFilter): HttpParams {
     let requestParams = new HttpParams()
     requestParams = requestParams.set('api_key', filter.ApiKey || this.apiKey)
-    requestParams = requestParams.set('language', filter.Language || this.defaultLanguage)
+    requestParams = requestParams.set('language', this.ls.getCurrentLanguage())
     requestParams = requestParams.set('page', String(filter.Page || 1))
     filter.Query && (requestParams = requestParams.set('query', filter.Query))
     return requestParams

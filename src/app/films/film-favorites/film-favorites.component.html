@@ -1,4 +1,4 @@
-<h2 *ngIf="filmsNotFound()">Фильмы не найден :(</h2>
+<h2 *ngIf="filmsNotFound()" i18n="@@filmsNotFoundError">Фильмы не найден :(</h2>
 <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
   <film-card
     [fxFlex.gt-xs]="32"
