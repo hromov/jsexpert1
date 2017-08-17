@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable'
 import { SearchFilter } from './shared/model'
+import { FilmList, Film } from './films/model'
+import { Credits } from './persons/model'
 
 @Injectable()
 export class FilmService {
@@ -60,7 +62,7 @@ export class FilmService {
       ID: filmId
     }
     const options = { params: this.getRequestParams(filter)}
-    return this.http.get(`${this.movieUrl}/${filmId}/credits`, options)
+    return this.http.get<Credits>(`${this.movieUrl}/${filmId}/credits`, options)
   }
 
   getPopularFilms (page?: number) {
@@ -68,7 +70,7 @@ export class FilmService {
       Page: page || 1
     }
     const options = { params: this.getRequestParams(filter)}
-    return this.http.get(this.popularMovieUrl, options)
+    return this.http.get<FilmList>(this.popularMovieUrl, options)
   }
 
   getPerson(personId: string) {
@@ -88,7 +90,7 @@ export class FilmService {
   }
 
   getFavoritesItem () {
-    return this.http.get("http://localhost:4200/getFavoritesList")
+    return this.http.get<Array<Film>>("http://localhost:4200/getFavoritesList")
   }
 
   saveFavoriteItem (filmId: string) {

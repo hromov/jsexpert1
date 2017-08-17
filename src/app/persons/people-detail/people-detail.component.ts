@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService } from '../../film.service'
-import { Film, People } from '../../shared/model'
+import { People, Credits } from '../../persons/model'
+import { Film, FilmList } from '../../films/model'
 
 @Component({
   selector: 'app-people-detail',
@@ -9,7 +10,6 @@ import { Film, People } from '../../shared/model'
   styleUrls: ['./people-detail.component.css']
 })
 export class PeopleDetailComponent implements OnInit {
-  personID: string
   person: People
   midImgPath: string
   smallImgPath: string
@@ -19,27 +19,18 @@ export class PeopleDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private filmService: FilmService
-  ) {
-    this.route.params.subscribe(params => {
-      this.personID = params['id']
-    })
-  }
+  ) { }
 
   ngOnInit() {
-    if(!this.personID) {
-      return
-    }
     this.midImgPath = this.filmService.midImgPath
     this.smallImgPath = this.filmService.smallImgPath
     this.noImage = this.filmService.noImage
-    this.filmService.getPerson(this.personID).subscribe((person:People) => {
-      this.person = person
-    }, err => {
-      console.error(err)
-    })
-    this.filmService.getPersonMovies(this.personID).subscribe((filmList:any) => {
-      this.cast = filmList.cast
-      this.crew = filmList.crew
+    this.route.data.flatMap(data => {
+      this.person = data.person
+      return this.filmService.getPersonMovies(this.person.id.toString())
+    }).subscribe((credits:Credits) => {
+      this.cast = credits.cast
+      this.crew = credits.crew
     })
   }
 }

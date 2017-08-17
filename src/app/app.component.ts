@@ -8,7 +8,7 @@ import { User } from './users/user.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private ssoService: SSOService) {    
+  constructor(public ssoService: SSOService) {    
   }
   title = 'Каталог фильмов';
   links = [

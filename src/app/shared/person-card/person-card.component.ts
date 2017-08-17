@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { People } from '../../shared/model'
+import { People } from '../../persons/model'
 import { FilmService } from '../../film.service'
 
 @Component({

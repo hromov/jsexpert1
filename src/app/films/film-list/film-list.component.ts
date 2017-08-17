@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../../film.service'
-import { Film } from '../../shared/model'
+import { Film } from '../model'
 import { SearchService } from '../../search/search.service'
 import { ActivatedRoute } from '@angular/router'
 
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./film-list.component.css']
 })
 export class FilmListComponent implements OnInit {
-  filmList : Array<Film>
+  filmList : Array<Film> = []
   loading : boolean
   currentPage: number
   totalPages: number
@@ -20,7 +20,6 @@ export class FilmListComponent implements OnInit {
     private searchService: SearchService,
     private route: ActivatedRoute
   ) {
-    this.filmList = []
     this.searchService.filmNameChanged.subscribe((filmName:string) => {
       this.getNewFilms(filmName)
     })

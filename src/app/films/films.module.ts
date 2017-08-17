@@ -11,18 +11,49 @@ import { MaterialModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { RouterModule, Routes } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
+import { FilmPopularResolver } from './film-popular/film-popular.resolver'
+import { FilmDetailResolver } from './film-detail/film-detail.resolver'
+import { FilmFavoritesResolver } from './film-favorites/film-favorites.resolver'
+import { SharedModule } from '../shared/shared.module'
 
 const filmsRoutes: Routes = [
-  { path: '', component: FilmPopularComponent },
+  { 
+    path: '',
+    component: FilmPopularComponent,
+    resolve: {
+      filmList: FilmPopularResolver
+    }
+  },
   { path: 'films', component: FilmListComponent },
-  { path: 'films/:id', component: FilmDetailComponent},
+  {
+    path: 'films/:id',
+    component: FilmDetailComponent,
+    resolve: {
+      film: FilmDetailResolver
+    }
+  },
   { 
     path: 'films/:id/edit',
     component: FilmDetailComponent,
-    canActivate: [AdminGuardService]
+    canActivate: [AdminGuardService],
+    resolve: {
+      film: FilmDetailResolver
+    }
   },
-  { path: 'popular', component: FilmPopularComponent },
-  { path: 'favorites', component: FilmFavoritesComponent },
+  {
+    path: 'popular',
+    component: FilmPopularComponent,
+    resolve: {
+      filmList: FilmPopularResolver
+    }
+  },
+  { 
+    path: 'favorites',
+    component: FilmFavoritesComponent,
+    resolve: {
+      films: FilmFavoritesResolver
+    }
+  },
 ]
 
 @NgModule({
@@ -30,11 +61,17 @@ const filmsRoutes: Routes = [
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
-    FilmsModule,
     ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(filmsRoutes)
   ],
-  providers: [FilmAddService],
-  declarations: []
+  providers: [FilmAddService, FilmPopularResolver, FilmDetailResolver, FilmFavoritesResolver],
+  declarations: [
+    FilmListComponent,
+    FilmPopularComponent,
+    FilmDetailComponent,
+    FilmFavoritesComponent,
+    FilmAddComponent
+  ]
 })
 export class FilmsModule { }

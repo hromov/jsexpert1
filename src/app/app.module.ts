@@ -17,16 +17,16 @@ import { SSOService } from './users/sso.service'
 import { SSOApiService } from './users/sso-api.service'
 import { ErrorToken, ErrorMessages } from './shared/errorToken'
 import { SnackService } from './snack.service'
-import { FilmCardComponent } from './shared/film-card/film-card.component'
-import { PersonCardComponent } from './shared/person-card/person-card.component'
+import { FilmPopularResolver } from './films/film-popular/film-popular.resolver';
+import { LoadingComponent } from './loading/loading.component'
 
 const appRoutes: Routes = [
   { path: '', loadChildren: './films/films.module#FilmsModule'},
+  { path: 'films/:id/cast', loadChildren: './persons/persons.module#PersonsModule'},
   { path: 'films', loadChildren: './films/films.module#FilmsModule'},
   { path: 'popular', loadChildren: './films/films.module#FilmsModule'},
   { path: 'favorites', loadChildren: './films/films.module#FilmsModule'},
-  { path: 'films/:id/cast', loadChildren: './persons/persons.module#PersonsModule'},
-  { path: 'peoples/:id', loadChildren: './persons/persons.module#PersonsModule'},
+  { path: 'peoples', loadChildren: './persons/persons.module#PersonsModule'},
   { path: 'login', component: LoginComponent}
 ];
 
@@ -35,9 +35,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     SearchComponent,
-    PersonCardComponent,
     LoginComponent,
-    FilmCardComponent
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

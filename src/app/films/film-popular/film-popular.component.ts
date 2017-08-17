@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { FilmService } from '../../film.service'
-import { Film } from '../../shared/model'
+import { Film, FilmList } from '../model'
 import { AdminGuardService } from '../../users/guard.service'
 import { FilmAddService } from '../film-add/film-add.service'
 import { SnackService } from '../../snack.service'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-film-popular',
@@ -11,9 +12,9 @@ import { SnackService } from '../../snack.service'
   styleUrls: ['./film-popular.component.css']
 })
 export class FilmPopularComponent implements OnInit {
-  currentPage: number
+  currentPage: number = 1
   totalPages: number
-  films: Array<Film> = []
+  films: Array<Film>
   loading: boolean
   isAdmin: boolean
   constructor(
@@ -21,13 +22,15 @@ export class FilmPopularComponent implements OnInit {
     //для дз
     private adminGuardService: AdminGuardService,
     private filmAddService: FilmAddService,
-    private snackService: SnackService
+    private snackService: SnackService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.currentPage = 1
-    this.getPopularFilms(this.currentPage)
-    //для дз
+    this.route.data.subscribe(data => {
+      this.totalPages = data.filmList.total_pages
+      this.films = data.filmList.results || []
+    })
     this.isAdmin = this.adminGuardService.canActivate()
     this.filmAddService.NewFilm$.subscribe((film: Film) => {
       this.films.unshift(film)

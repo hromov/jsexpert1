@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 import { FilmService } from '../../film.service'
-import { Film, People } from '../../shared/model'
+import { People } from '../../persons/model'
+import { Film } from '../../films/model'
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -15,37 +16,22 @@ export class CastComponent implements OnInit {
   cast: Array<People>
   crew: Array<People>
   bigBackPath: string
-  loading: boolean = true
   constructor(
     private route: ActivatedRoute,
     private filmService: FilmService
   ) {
     this.route.params.subscribe(params => {
       this.filmID = params['id']
-      console.log(this.filmID)
     })
   }
 
   ngOnInit() {
-    if(this.filmID) {
-      this.bigBackPath = this.filmService.bigBackPath
-    
-      Observable.forkJoin([
-        this.filmService.getFilmById(this.filmID),
-        this.filmService.getCredits(this.filmID)
-      ]).subscribe(([film, credits]:any ) => {
-        this.film = film
-        this.cast = credits.cast
-        this.crew = credits.crew
-      }, err => {
-        console.error(err)
-        this.loading = false
-      }, () => {
-        this.loading = false
-      }) 
-    } else {
-      return
-    }
-    
+    this.bigBackPath = this.filmService.bigBackPath
+    this.route.data.flatMap(data => {
+      this.cast = data.credits.cast
+      this.crew = data.credits.crew
+      return this.filmService.getFilmById(this.filmID)
+    })
+    .subscribe(film => this.film = film)    
   }
 }

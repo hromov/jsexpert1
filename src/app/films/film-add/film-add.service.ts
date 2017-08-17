@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { ReplaySubject } from 'rxjs/ReplaySubject'
 import { Observable } from 'rxjs/Observable'
-import { Film } from '../../shared/model'
+import { Film } from '../model'
 
 @Injectable()
 export class FilmAddService {

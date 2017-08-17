@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Film } from '../../shared/model'
+import { Film } from '../model'
 import { FilmAddService } from './film-add.service'
 
 @Component({

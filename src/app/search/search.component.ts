@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Rx'
 import { FilmService } from '../film.service'
 import { SearchService } from './search.service'
-import { Film } from '../shared/model'
+import { Film } from '../films/model'
 
 @Component({
   selector: 'app-search',

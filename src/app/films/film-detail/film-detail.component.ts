@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 import { FilmService } from '../../film.service'
-import { Film, People } from '../../shared/model'
+import { People, Credits } from '../../persons/model'
+import { Film } from '../model'
+import { Observable } from 'rxjs/Rx'
 
 @Component({
   selector: 'app-film-detail',
@@ -9,7 +11,6 @@ import { Film, People } from '../../shared/model'
   styleUrls: ['./film-detail.component.css']
 })
 export class FilmDetailComponent implements OnInit {
-  filmID: string
   film: Film
   cast: Array<People>
   midImgPath: string
@@ -17,42 +18,33 @@ export class FilmDetailComponent implements OnInit {
   noImage: string
   isFavorite: boolean
   favoriteChecked: boolean
-  loading: boolean = true
   constructor(
     private route: ActivatedRoute,
     private filmService: FilmService
-  ) {
-    this.route.params.subscribe(params => {
-      this.filmID = params['id']
-      console.log(this.filmID)
-    })
-  }
+  ) { }
 
   ngOnInit() {
-    if (!this.filmID) {
-      return
-    }
     this.midImgPath = this.filmService.midImgPath
     this.smallImgPath = this.filmService.smallImgPath
     this.noImage = this.filmService.noImage
-    this.filmService.getFilmById(this.filmID).subscribe(
-      (film: Film) => this.film = film,
-      err => this.loading = false,
-      () => this.loading = false
-    )
-    this.filmService.getCredits(this.filmID).subscribe(
-      (credits: any) => this.cast = credits.cast.slice(0, 10)
-    )
-    this.filmService.getFavoriteItem(this.filmID).subscribe(
-      (favorites: any) => this.isFavorite = favorites.some(favorite => favorite.status),
+    /* Есть сомнения, но лучше не придумал. */
+    /* Хотелось бы сначала получить film, а затем сделать 2 независимых запроса, не плодить каждый раз новые подписки. Но не получилось */
+    this.route.data.flatMap(data => {
+      this.film = data.film
+      return this.filmService.getCredits(this.film.id.toString())
+    }).subscribe((credits: Credits) => this.cast = credits.cast.slice(0, 10))
+
+    this.filmService.getFavoriteItem(this.film.id.toString())
+      .subscribe((favorites: any) => {
+        this.isFavorite = favorites.some(favorite => favorite.status)
+      },
       err => this.favoriteChecked = true,
-      () => this.favoriteChecked = true
-    )
+      () => this.favoriteChecked = true)
   }
 
   saveFavorite() {
     this.favoriteChecked = false
-    this.filmService.saveFavoriteItem(this.filmID).subscribe(
+    this.filmService.saveFavoriteItem(this.film.id.toString()).subscribe(
       (favorite: any) => this.isFavorite = favorite && favorite.status === "OK",
       err => console.log(err)
     )

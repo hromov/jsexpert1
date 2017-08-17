@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FilmService } from '../../film.service';
+import { Component, OnInit } from '@angular/core'
+import { FilmService } from '../../film.service'
+import { ActivatedRoute } from '@angular/router'
+import { Film } from '../model'
 
 @Component({
   selector: 'app-film-favorites',
@@ -7,21 +9,21 @@ import { FilmService } from '../../film.service';
   styleUrls: ['./film-favorites.component.css']
 })
 export class FilmFavoritesComponent implements OnInit {
-  loading: boolean = true
-  films: Array<Object> = []
-  constructor(private filmService: FilmService) {
-    this.filmService.getFavoritesItem().subscribe(
-      (films: any) => this.films = films,
-      err => this.loading = false,
-      () => this.loading = false
+  films: Array<Film> = []
+  constructor(
+    private filmService: FilmService,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    this.route.data.subscribe(
+      data => this.films = data.films || [],
+      err => console.log(err)
     )
   }
 
-  ngOnInit() {
-  }
-
   filmsNotFound(): boolean {
-    return !this.loading && !this.films.length
+    return !this.films.length
   }
 
 }

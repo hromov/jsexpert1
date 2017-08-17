@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { FilmService } from '../../film.service'
-import { Film } from '../../shared/model'
+import { Film } from '../../films/model'
 
 
 @Component({
