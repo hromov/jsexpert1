@@ -8,7 +8,7 @@ import { SSOService } from './sso.service'
 export class AdminGuardService implements CanActivate {
     user: User
     constructor(private ssoService: SSOService) {
-        this.ssoService.CurrentUserChanged$.subscribe((user: User | null) => {
+        this.ssoService.CurrentUser$.subscribe((user: User | null) => {
             this.user = user
         })
     }

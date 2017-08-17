@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     @Inject(ErrorToken) errorMessages: any
   ) {
     this.messages = errorMessages
-    ssoService.CurrentUserChanged$.subscribe(user => {
+    ssoService.CurrentUser$.subscribe(user => {
       if(user) {
         this.router.navigate(['/'])
       } else {

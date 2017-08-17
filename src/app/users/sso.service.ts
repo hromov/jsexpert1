@@ -10,7 +10,7 @@ import { SSOApiService } from './sso-api.service'
 export class SSOService {
   constructor(private ssoApiService: SSOApiService) {}
   private CurrentUserChangedSource: ReplaySubject<User | null> = new ReplaySubject<User>(1);
-  public CurrentUserChanged$: Observable<User | null> = this.CurrentUserChangedSource.asObservable();
+  public CurrentUser$: Observable<User | null> = this.CurrentUserChangedSource.asObservable();
   public signIn(loginForm: LoginFormModel) {
     this.ssoApiService.signIn(loginForm)   
       .subscribe(user => this.CurrentUserChangedSource.next(user))

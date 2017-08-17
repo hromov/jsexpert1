@@ -8,11 +8,7 @@ import { User } from './users/user.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  user: User
   constructor(private ssoService: SSOService) {    
-    this.ssoService.CurrentUserChanged$.subscribe((user: User | null) => {
-      this.user = user
-    })
   }
   title = 'Каталог фильмов';
   links = [
