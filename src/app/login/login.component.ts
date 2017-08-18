@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   login() {
     if(this.loginForm.isValid()) {
       this.ssoService.signIn(this.loginForm).subscribe(user => {
-        console.log(user)
         if(user) {
           this.router.navigate(['/'])
         } else {

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 import { FilmService } from '../../film.service'
 import { People, Credits } from '../../persons/model'
 import { Film, FilmList } from '../../films/model'
+import { ErrorService, ErrorType } from '../../error.service'
 
 @Component({
   selector: 'app-people-detail',
@@ -18,7 +19,8 @@ export class PeopleDetailComponent implements OnInit {
   crew: Array<Object>
   constructor(
     private route: ActivatedRoute,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -28,9 +30,12 @@ export class PeopleDetailComponent implements OnInit {
     this.route.data.flatMap(data => {
       this.person = data.person
       return this.filmService.getPersonMovies(this.person.id.toString())
-    }).subscribe((credits:Credits) => {
-      this.cast = credits.cast
-      this.crew = credits.crew
-    })
+    }).subscribe(
+      (credits:Credits) => {
+        this.cast = credits.cast
+        this.crew = credits.crew
+      },
+      err => this.errorService.onError(err, ErrorType.Shown)
+    )
   }
 }

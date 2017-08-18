@@ -3,15 +3,19 @@ import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@a
 import { Observable } from 'rxjs/Observable'
 import { FilmService } from '../../film.service'
 import { FilmList } from '../model'
-//import { ErrorService, ErrorType } from '../error.service'
+import { ErrorService, ErrorType } from '../../error.service'
 
 @Injectable()
 export class FilmPopularResolver implements Resolve<FilmList> {
     constructor(
-        private filmService: FilmService
-        //private errorService: ErrorService
+        private filmService: FilmService,
+        private errorService: ErrorService
     ) { }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<FilmList> {
         return this.filmService.getPopularFilms()
+            .catch(err => {
+                this.errorService.onError(err, ErrorType.Critical)
+                return Observable.throw(err)
+            })
     }
 }

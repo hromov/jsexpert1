@@ -3,6 +3,7 @@ import { FilmService } from '../../film.service'
 import { Film } from '../model'
 import { SearchService } from '../../search/search.service'
 import { ActivatedRoute } from '@angular/router'
+import { ErrorService, ErrorType } from '../../error.service'
 
 @Component({
   selector: 'film-list',
@@ -10,17 +11,18 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./film-list.component.css']
 })
 export class FilmListComponent implements OnInit {
-  filmList : Array<Film> = []
-  loading : boolean
+  filmList: Array<Film> = []
+  loading: boolean
   currentPage: number
   totalPages: number
   currentFilm: string
   constructor(
     private filmService: FilmService,
     private searchService: SearchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private errorService: ErrorService
   ) {
-    this.searchService.filmNameChanged.subscribe((filmName:string) => {
+    this.searchService.filmNameChanged.subscribe((filmName: string) => {
       this.getNewFilms(filmName)
     })
     this.route.queryParams.subscribe(params => {
@@ -31,7 +33,7 @@ export class FilmListComponent implements OnInit {
   ngOnInit() {
     this.getNewFilms(this.currentFilm)
   }
-  
+
   getNewFilms(filmName: string) {
     this.currentFilm = filmName
     this.currentPage = 1
@@ -42,10 +44,15 @@ export class FilmListComponent implements OnInit {
   private getFilms(filmName: string) {
     this.loading = true
     this.filmService.getFilms(filmName || "", this.currentPage)
-      .subscribe((filmList:any) => {
+      .subscribe(
+      (filmList: any) => {
         this.totalPages = filmList.total_pages
         this.filmList = this.filmList.concat(...filmList.results)
-      }, err => this.loading = false,
+      },
+      err => {
+        this.loading = false
+        this.errorService.onError(err, ErrorType.Shown)
+      },
       () => this.loading = false)
   }
 
@@ -54,7 +61,7 @@ export class FilmListComponent implements OnInit {
     this.getFilms(this.currentFilm)
   }
 
-  filmsNotFound() : boolean{
+  filmsNotFound(): boolean {
     return !this.loading && !this.filmList.length
   }
 }

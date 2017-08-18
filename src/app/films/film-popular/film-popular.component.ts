@@ -5,6 +5,7 @@ import { AdminGuardService } from '../../users/guard.service'
 import { FilmAddService } from '../film-add/film-add.service'
 import { SnackService } from '../../snack.service'
 import { ActivatedRoute } from '@angular/router'
+import { ErrorService, ErrorType } from '../../error.service'
 
 @Component({
   selector: 'app-film-popular',
@@ -23,7 +24,8 @@ export class FilmPopularComponent implements OnInit {
     private adminGuardService: AdminGuardService,
     private filmAddService: FilmAddService,
     private snackService: SnackService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -32,10 +34,13 @@ export class FilmPopularComponent implements OnInit {
       this.films = data.filmList.results || []
     })
     this.isAdmin = this.adminGuardService.canActivate()
-    this.filmAddService.NewFilm$.subscribe((film: Film) => {
-      this.films.unshift(film)
-      this.snackService.message(`Фильм ${film.title} добавлен!`)
-    })
+    this.filmAddService.NewFilm$.subscribe(
+      (film: Film) => {
+        this.films.unshift(film)
+        this.snackService.message(`Фильм ${film.title} добавлен!`)
+      },
+      err => this.errorService.onError(err, ErrorType.Shown)
+    )
   }
 
   getPopularFilms(page?: number) {
@@ -45,7 +50,10 @@ export class FilmPopularComponent implements OnInit {
         this.totalPages = filmList.total_pages
         this.films = this.films.concat(...filmList.results)
       },
-      err => this.loading = false,
+      err => {
+        this.loading = false
+        this.errorService.onError(err, ErrorType.Shown)
+      },
       () => this.loading = false
     )
   }

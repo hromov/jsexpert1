@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router'
 import { FilmService } from '../../film.service'
 import { People } from '../../persons/model'
 import { Film } from '../../films/model'
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx'
+import { ErrorService, ErrorType} from '../../error.service'
 
 @Component({
   selector: 'app-cast',
@@ -18,7 +19,8 @@ export class CastComponent implements OnInit {
   bigBackPath: string
   constructor(
     private route: ActivatedRoute,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private errorService: ErrorService
   ) {
     this.route.params.subscribe(params => {
       this.filmID = params['id']
@@ -31,7 +33,9 @@ export class CastComponent implements OnInit {
       this.cast = data.credits.cast
       this.crew = data.credits.crew
       return this.filmService.getFilmById(this.filmID)
-    })
-    .subscribe(film => this.film = film)    
+    }).subscribe(
+      film => this.film = film,
+      err => this.errorService.onError(err, ErrorType.Shown)
+    )    
   }
 }

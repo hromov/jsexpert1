@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import 'hammerjs'
-import { FilmService} from './film.service'
+import { FilmService } from './film.service'
 import { SearchComponent } from './search/search.component'
 import { SearchService } from './search/search.service'
 import { LoginComponent } from './login/login.component'
@@ -19,12 +19,16 @@ import { SnackService } from './snack.service'
 import { FilmPopularResolver } from './films/film-popular/film-popular.resolver';
 import { LoadingComponent } from './loading/loading.component'
 import { LanguageService } from './language.service'
+import { ErrorService } from './error.service';
+import { NotfoundComponent } from './notfound/notfound.component'
 
 const appRoutes: Routes = [
-  { path: '', loadChildren: './films/films.module#FilmsModule'},
-  { path: 'films/:id/cast', loadChildren: './persons/persons.module#PersonsModule'},
-  { path: 'peoples', loadChildren: './persons/persons.module#PersonsModule'},
-  { path: 'login', component: LoginComponent}
+  { path: '', loadChildren: './films/films.module#FilmsModule' },
+  { path: 'films/:id/cast', loadChildren: './persons/persons.module#PersonsModule' },
+  { path: 'peoples', loadChildren: './persons/persons.module#PersonsModule' },
+  { path: 'login', component: LoginComponent },
+  { path: 'notfound', component: NotfoundComponent },
+  { path: '**', component: NotfoundComponent }
 ];
 
 
@@ -33,7 +37,8 @@ const appRoutes: Routes = [
     AppComponent,
     SearchComponent,
     LoginComponent,
-    LoadingComponent
+    LoadingComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,8 @@ const appRoutes: Routes = [
     SSOService,
     SSOApiService,
     SnackService,
-    LanguageService
+    LanguageService,
+    ErrorService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@ import { FilmService } from '../../film.service'
 import { People, Credits } from '../../persons/model'
 import { Film } from '../model'
 import { Observable } from 'rxjs/Rx'
+import { ErrorService, ErrorType } from '../../error.service'
 
 @Component({
   selector: 'app-film-detail',
@@ -20,7 +21,8 @@ export class FilmDetailComponent implements OnInit {
   favoriteChecked: boolean
   constructor(
     private route: ActivatedRoute,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -32,13 +34,19 @@ export class FilmDetailComponent implements OnInit {
     this.route.data.flatMap(data => {
       this.film = data.film
       return this.filmService.getCredits(this.film.id.toString())
-    }).subscribe((credits: Credits) => this.cast = credits.cast.slice(0, 10))
+    }).subscribe(
+      (credits: Credits) => this.cast = credits.cast.slice(0, 10),
+      err => this.errorService.onError(err, ErrorType.Shown)
+    )
 
     this.filmService.getFavoriteItem(this.film.id.toString())
       .subscribe((favorites: any) => {
         this.isFavorite = favorites.some(favorite => favorite.status)
       },
-      err => this.favoriteChecked = true,
+      err => {
+        this.favoriteChecked = true
+        this.errorService.onError(err, ErrorType.Shown)
+      },
       () => this.favoriteChecked = true)
   }
 
