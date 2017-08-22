@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class FilmAppPage {
+export class PhonerPage {
   navigateTo() {
     return browser.get('/');
   }

@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 import { SSOService } from './users/sso.service';
 import { User } from './users/user.model';
 import { LanguageService } from './language.service'
+=======
+import { Component} from '@angular/core';
+>>>>>>> master
 
 @Component({
   selector: 'app-root',
@@ -9,6 +13,7 @@ import { LanguageService } from './language.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+<<<<<<< HEAD
   links: any
   constructor(
     public ssoService: SSOService,
@@ -21,4 +26,6 @@ export class AppComponent {
     this.ssoService.signOut()
   }
 
+=======
+>>>>>>> master
 }
