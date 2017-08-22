@@ -1,0 +1,15 @@
+<app-film-add *ngIf="isAdmin"></app-film-add>
+<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between stretch" fxLayoutWrap>
+  <!-- film, canEdit передаем временно для выполнения дз -->
+  <film-card
+    [fxFlex.gt-xs]="32"
+    *ngFor="let film of films"
+    [filmId]="film.id"
+    [film]="film"
+    [canEdit]="isAdmin">
+  </film-card>  
+</div>
+<md-spinner *ngIf="loading"></md-spinner>
+<button *ngIf="films.length && currentPage !== totalPages" [disabled]="loading" md-raised-button color="primary" (click)="nextPage()">
+  <ng-container i18n="@@showMoreButton">Показать еще</ng-container> &nbsp;<md-icon>expand_more</md-icon>
+</button>

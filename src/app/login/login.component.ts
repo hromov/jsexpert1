@@ -1,9 +1,16 @@
 import { Component, Inject, InjectionToken, OnInit } from '@angular/core'
+<<<<<<< HEAD
+import { AdminGuardService } from '../users/guard.service'
+import { LoginFormModel } from './login.model'
+import { Router } from '@angular/router'
+import { SSOService } from '../users/sso.service'
+=======
 import { GuardService } from '../guard.service'
 import { LoginFormModel } from './login.model'
 import { Router } from '@angular/router'
 import { SSOService } from '../sso.service'
 import { ErrorToken } from '../shared/errorToken'
+>>>>>>> master
 
 @Component({
   selector: 'app-login',
@@ -12,6 +19,14 @@ import { ErrorToken } from '../shared/errorToken'
 })
 export class LoginComponent implements OnInit {
   loginError: boolean
+<<<<<<< HEAD
+  loginForm: LoginFormModel
+  constructor(
+    private ssoService: SSOService,
+    private router: Router
+  ) { }
+  
+=======
   messages: any
   loginForm: LoginFormModel
   constructor(
@@ -48,14 +63,28 @@ export class LoginComponent implements OnInit {
     }
   }
 
+>>>>>>> master
   ngOnInit() {
     this.loginForm = new LoginFormModel()
   }
 
   login() {
     if(this.loginForm.isValid()) {
+<<<<<<< HEAD
+      this.ssoService.signIn(this.loginForm).subscribe(user => {
+        if(user) {
+          this.router.navigate(['/'])
+        } else {
+          this.loginError = true
+        }
+      })
+    }
+  }
+}
+=======
       this.ssoService.signIn(this.loginForm)
     }
   }
 
 }
+>>>>>>> master

@@ -1,0 +1,25 @@
+<form (ngSubmit)="createFilm()" [formGroup]="newFilm">
+  <md-card>
+    <md-card-title i18n="@@newFilmFormTitle">Добавление нового фильма</md-card-title>
+    <md-card-content fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between center">
+      <md-input-container fxFlex="32"> 
+        <input mdInput i18n-placeholder="@@fillNamePlaceholder" placeholder="Название фильма" name="title"
+          formControlName="title" type="text">
+        <md-error i18n="@@requiredError">Это обязательное поле</md-error>
+      </md-input-container>
+      <md-input-container fxFlex="32">
+        <input mdInput i18n-placeholder="@@filmBudgetPlaceholder" placeholder="Бюджет ($)" name="revenue"
+          formControlName="revenue" type="text">
+          <md-error i18n="@@numberError">Только цифры</md-error>
+      </md-input-container>
+      <md-input-container fxFlex="32">
+        <input mdInput i18n-placeholder="@@filmRuntimePlaceholder" placeholder="Продолжительность (минут)" name="runtime"
+          formControlName="runtime" type="text">
+        <md-error i18n="@@numberError">Только цифры</md-error>
+      </md-input-container>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button type="submit" color="primary" [disabled]="newFilm.invalid" i18n="@@createFilmButton">Создать фильм</button>
+    </md-card-actions>
+  </md-card>
+</form>

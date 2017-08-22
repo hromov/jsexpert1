@@ -1,0 +1,12 @@
+.poster > img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.gt-xs h1 {
+    margin: 0;
+}
+.films md-card {
+    margin-bottom: 16px;
+    cursor: pointer;
+}

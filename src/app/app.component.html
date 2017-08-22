@@ -1,2 +1,38 @@
+<<<<<<< HEAD
+<md-toolbar color="primary">
+  <div class="toolbar-main-row" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxHide fxShow.gt-xs class="toolbar-buttons">
+      <a md-button *ngFor="let link of links" [routerLink]="link.path">
+        <md-icon>{{link.icon}}</md-icon> &nbsp; {{link.label}}
+      </a>
+      <button md-button (click)="signOut()" *ngIf="ssoService.CurrentUser$ | async; else notLoginnedBlock">
+        <md-icon>exit_to_app</md-icon> &nbsp; <ng-container i18n="@@exit">Выход</ng-container>
+      </button>
+      <ng-template #notLoginnedBlock>
+        <button md-button routerLink="/login">
+          <md-icon>account_circle</md-icon> &nbsp; <ng-container i18n="@@enter">Вход</ng-container>
+        </button>
+      </ng-template>
+    </div>
+    <app-search></app-search>
+    <button fxHide.gt-xs md-mini-fab (click)="sidenav.toggle()"><md-icon>menu</md-icon></button>
+  </div>
+</md-toolbar>
+
+<md-sidenav-container>
+  <md-sidenav #sidenav mode="over" class="app-sidenav">
+    <nav>
+      <a md-button class="nav-link" *ngFor="let link of links" [routerLink]="link.path">
+        <md-icon>{{link.icon}}</md-icon> &nbsp; {{link.label}}
+      </a>
+    </nav>
+  </md-sidenav>
+  <div class="app-content">
+    <app-loading></app-loading>
+    <router-outlet></router-outlet>
+  </div>
+</md-sidenav-container>
+=======
 <router-outlet></router-outlet>
 
+>>>>>>> master

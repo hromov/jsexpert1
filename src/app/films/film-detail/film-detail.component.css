@@ -1,0 +1,18 @@
+.poster > img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.gt-xs h1 {
+    margin-top: 0;
+}
+app-person-card {
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+div.action-bar, div.film-detail {
+    margin-bottom: 16px;
+}
+div.film-detail > span{
+    margin-bottom: 8px;
+}

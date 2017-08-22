@@ -1,0 +1,12 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <md-input-container>
+    <input #searchInput mdInput i18n-placeholder="@@searchPlaceholder" placeholder="Введите назване фильма" value="" [(ngModel)]="filmName" (keyup.enter)="search()" [mdAutocomplete]="filmNamesList">
+    <span mdSuffix fxHide fxShow.gt-xs class="reset-icon" (click)="reset()"><md-icon>close</md-icon></span>
+  </md-input-container>
+  <button md-mini-fab color="accent" (click)="search()"><md-icon>search</md-icon></button>
+  <md-autocomplete #filmNamesList="mdAutocomplete">
+    <md-option *ngFor="let filmName of filmNames" [value]="filmName" (click)="search()">
+        {{ filmName }}
+    </md-option>
+  </md-autocomplete>
+</div>
