@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -32,60 +31,26 @@ const appRoutes: Routes = [
   { path: '**', component: NotfoundComponent }
 ];
 
-=======
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from '@angular/material';
-import { RouterModule, Routes } from '@angular/router';
-
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { PaymentComponent } from './payment/payment.component';
-import { GuardService } from './guard.service'
-import { SSOService } from './sso.service'
-import { SSOApiService } from './sso-api.service'
-import { ErrorToken, ErrorMessages } from './shared/errorToken'
-
-const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'payment', component: PaymentComponent, canActivate: [CanActivatePayment]},
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
-]
->>>>>>> master
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
     SearchComponent,
     LoginComponent,
     LoadingComponent,
     NotfoundComponent
-=======
-    LoginComponent,
-    PaymentComponent
->>>>>>> master
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
     HttpClientModule,
-=======
-    HttpModule,
->>>>>>> master
     BrowserAnimationsModule,
     FlexLayoutModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-<<<<<<< HEAD
     FilmService,
     SearchService,
     AdminGuardService,
@@ -94,12 +59,6 @@ const appRoutes: Routes = [
     SnackService,
     LanguageService,
     ErrorService
-=======
-    GuardService,
-    SSOService,
-    SSOApiService,
-    {provide: ErrorToken, useValue: ErrorMessages},
->>>>>>> master
   ],
   bootstrap: [AppComponent]
 })

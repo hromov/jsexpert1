@@ -1,15 +1,10 @@
 <form (ngSubmit)="login()">
   <md-card>
-<<<<<<< HEAD
     <md-card-title i18n="@@enter">Вход</md-card-title>
-=======
-    <md-card-title i18n="@@loginTitle">Вход</md-card-title>
->>>>>>> master
     <md-card-content>
       <md-input-container>
         <input mdInput i18n-placeholder="@@emailPlaceholder" placeholder="Введите email" name="email" required
           [(ngModel)]="loginForm.email" type="email" [pattern]=loginForm.emailRegExp>
-<<<<<<< HEAD
         <md-error i18n="@@emailFormatError">Неверный формат email</md-error>
       </md-input-container>
       <md-input-container>
@@ -21,19 +16,6 @@
     </md-card-content>
     <md-card-actions>
       <button md-button type="submit" color="primary" [disabled]="!loginForm.isValid()" i18n="@@enterButton">Войти</button>
-=======
-        <md-error>{{messages?.emailError}}</md-error>
-      </md-input-container>
-      <md-input-container>
-        <input mdInput i18n-placeholder="@@passwordPlaceholder"  placeholder="Введите пароль" name="password" required
-          [(ngModel)]="loginForm.password" type="password" [pattern]=loginForm.passwordRegExp>
-        <md-error>{{messages?.passwordError}}</md-error>
-      </md-input-container>
-      <md-error *ngIf="loginError">{{messages?.loginError}}</md-error>
-    </md-card-content>
-    <md-card-actions>
-      <button md-button type="submit" color="primary" [disabled]="!loginForm.isValid()" i18n="@@loginButton">Войти</button>
->>>>>>> master
     </md-card-actions>
   </md-card>
 </form>

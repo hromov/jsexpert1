@@ -1,0 +1,6 @@
+.reset-icon {
+    padding: 0 16px;
+}
+.reset-icon:hover {
+    cursor: pointer;
+}
